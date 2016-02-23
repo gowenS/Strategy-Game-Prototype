@@ -1,6 +1,9 @@
 package com.rustandtuna.gameprototype;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 /**
@@ -17,7 +20,9 @@ public class GameState {
     int initStatus = 0;
     int trackPlayerTurn = 1;
     String[] legalMove = new String[2];
-
+    public PopupWindow p1turn;
+    private LayoutInflater layoutInflater;
+    LinearLayout now;
 
 
 
@@ -32,6 +37,7 @@ public class GameState {
 
         status = "init";
         this.runGameState(-1);
+
     }
 
     public String runGameState(int pressedCell){
@@ -132,6 +138,13 @@ public class GameState {
                     }
                 }
                 else {
+                    //TODO fix popup window below
+//                    layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.push_empty_btn,);
+//                    now = (LinearLayout) container.findViewById(R.id.parent_for_emptybtn);
+//                    p1turn = new PopupWindow(container,500,500);
+//                    p1turn.showAtLocation(now, Gravity.NO_GRAVITY,500,500);
+
                     switch (this.trackPlayerTurn){
                         case 1:
                             break;
