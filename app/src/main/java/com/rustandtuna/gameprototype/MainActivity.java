@@ -10,6 +10,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
 
+    //git test line
+
     gridButton a1Butt;
     gridButton a2Butt;
     gridButton a3Butt;

@@ -21,7 +21,6 @@ public class GameState {
 
 
 
-
     public GameState() {
         gameGrid = new gridButton[50];
 
