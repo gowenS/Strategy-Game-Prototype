@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
 
     //git test line
+    //git test line 2
+
 
     gridButton a1Butt;
     gridButton a2Butt;

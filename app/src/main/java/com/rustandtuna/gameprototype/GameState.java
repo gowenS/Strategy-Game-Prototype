@@ -122,7 +122,7 @@ public class GameState {
                                 this.initStatus = 7;
                                 this.status = "";
                                 //TODO make this toast say something appropriate
-                                Toast.makeText(context,"Start Game",Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,"Start Game!!",Toast.LENGTH_LONG).show();
                             }
                             else{
                                 this.status = "";
