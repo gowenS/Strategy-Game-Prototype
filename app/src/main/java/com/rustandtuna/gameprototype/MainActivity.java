@@ -1,11 +1,14 @@
 package com.rustandtuna.gameprototype;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
@@ -56,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
     gridButton[] gameGrid = new gridButton[32] ;
     GameState thisGame;
+
+    public PopupWindow playerTurnPopup;
+    LinearLayout popupLayout;
 
 
 
@@ -361,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 thisGame.buttonPress(31);
             }
         });
+//        PlayerTurn();
 
         thisGame = new GameState();
         Context gameContext = getApplicationContext();
@@ -388,5 +395,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void PlayerTurn(){
+        Intent intent = new Intent(this,EmptyTilePress.class);
+        startActivity(intent);
+
+
     }
 }

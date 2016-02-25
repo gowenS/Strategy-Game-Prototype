@@ -13,7 +13,8 @@
     tools:showIn="@layout/activity_main"
     android:orientation="horizontal"
     android:gravity="center_horizontal"
-    android:background="#2979ff">
+    android:background="#2979ff"
+    android:id="@+id/content_main">
 
 
     <LinearLayout

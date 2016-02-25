@@ -1,9 +1,7 @@
 package com.rustandtuna.gameprototype;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
+import android.content.Intent;
 import android.widget.Toast;
 
 /**
@@ -20,9 +18,6 @@ public class GameState {
     int initStatus = 0;
     int trackPlayerTurn = 1;
     String[] legalMove = new String[2];
-    public PopupWindow p1turn;
-    private LayoutInflater layoutInflater;
-    LinearLayout now;
 
 
 
@@ -34,6 +29,7 @@ public class GameState {
     public void initializeGame(gridButton[] gameGrid, Context gameContext){
         this.gameGrid = gameGrid;
         this.context = gameContext;
+//        setContentView(R.layout.activity_main);
 
         status = "init";
         this.runGameState(-1);
@@ -138,12 +134,10 @@ public class GameState {
                     }
                 }
                 else {
-                    //TODO fix popup window below
-//                    layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.push_empty_btn,);
-//                    now = (LinearLayout) container.findViewById(R.id.parent_for_emptybtn);
-//                    p1turn = new PopupWindow(container,500,500);
-//                    p1turn.showAtLocation(now, Gravity.NO_GRAVITY,500,500);
+                    //TODO fix popup window below'
+                    PlayerTurn();
+
+
 
                     switch (this.trackPlayerTurn){
                         case 1:
@@ -165,6 +159,13 @@ public class GameState {
         this.status = "btn_prs";
 //        Log.e(log_cat,"status = "+ status + " ; initStatus = " + initStatus+ " ; pressedCell = " + pressedCell);
         this.runGameState(pressedCell);
+
+    }
+    public void PlayerTurn(){
+        Intent intent = new Intent(context,EmptyTilePress.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+
 
     }
 }
