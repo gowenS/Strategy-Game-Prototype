@@ -1,7 +1,6 @@
 package com.rustandtuna.gameprototype;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -397,10 +396,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void PlayerTurn(){
-        Intent intent = new Intent(this,EmptyTilePress.class);
-        startActivity(intent);
-
-
-    }
+//    public void PlayerTurn(){
+//        Intent intent = new Intent(this,EmptyTilePress.class);
+//        startActivityForResult(intent);
+//
+//
+//    }
 }

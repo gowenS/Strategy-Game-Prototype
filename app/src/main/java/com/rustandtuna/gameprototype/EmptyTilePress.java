@@ -15,6 +15,7 @@ public class EmptyTilePress extends Activity {
     ImageButton choose3;
     ImageButton choose4;
     int orientation;
+    public static int ButtonPressed = 0;
 
 
     @Override
@@ -29,49 +30,51 @@ public class EmptyTilePress extends Activity {
         choose1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rotateTile(1);
+                EmptyTilePress.ButtonPressed = 1;
+                finish();
             }
         });
         choose2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rotateTile(2);
+                EmptyTilePress.ButtonPressed = 2;
+                finish();
             }
         });
         choose3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rotateTile(3);
+                EmptyTilePress.ButtonPressed = 3;
+                finish();
             }
         });
         choose4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rotateTile(4);
+                EmptyTilePress.ButtonPressed = 4;
+                finish();
             }
         });
     }
 
-    public void rotateTile(int i){
+    protected void rotateTile(int i){
         switch (i){
             case 1:
-                orientation = 1;
+                this.orientation = 1;
                 break;
             case 2:
-                orientation = 2;
+                this.orientation = 2;
                 break;
             case 3:
-                orientation = 3;
+                this.orientation = 3;
                 break;
             case 4:
-                orientation = 4;
+                this.orientation = 4;
                 break;
         }
-        exit(orientation);
+        EmptyTilePress.ButtonPressed = this.orientation;
         finish();
 
     }
-    public int exit(int orientation){
-        return orientation;
-    }
+
 }

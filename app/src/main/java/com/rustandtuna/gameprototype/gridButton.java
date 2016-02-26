@@ -35,9 +35,10 @@ public class gridButton extends ImageButton{
         return orientation;
     }
     public void setOrientation(int orientation) {
-//        if(orientation > 0 && orientation < 5){
-//            this.orientation = orientation;
-//        }
+        if(orientation > 0 && orientation < 5){
+            this.orientation = orientation;
+        }
+        this.updateBackground(orientation);
         //TODO write this code to throw exception when given a number outside of legal range
 
     }

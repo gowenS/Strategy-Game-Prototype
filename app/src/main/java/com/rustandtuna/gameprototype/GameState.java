@@ -1,5 +1,6 @@
 package com.rustandtuna.gameprototype;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class GameState {
     int initStatus = 0;
     int trackPlayerTurn = 1;
     String[] legalMove = new String[2];
+    Activity activity;
 
 
 
@@ -30,6 +32,7 @@ public class GameState {
         this.gameGrid = gameGrid;
         this.context = gameContext;
 //        setContentView(R.layout.activity_main);
+
 
         status = "init";
         this.runGameState(-1);
@@ -136,7 +139,7 @@ public class GameState {
                 else {
                     //TODO fix popup window below'
                     PlayerTurn();
-
+                    gameGrid[pressedCell].setOrientation(EmptyTilePress.ButtonPressed);
 
 
                     switch (this.trackPlayerTurn){
@@ -162,6 +165,7 @@ public class GameState {
 
     }
     public void PlayerTurn(){
+
         Intent intent = new Intent(context,EmptyTilePress.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
