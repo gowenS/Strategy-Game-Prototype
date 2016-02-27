@@ -3,6 +3,7 @@ package com.rustandtuna.gameprototype;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -104,7 +105,7 @@ public class GameState {
                             }
                             else{
                                 this.status = "";
-                                Toast.makeText(context,legalMove[1],Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,legalMove[1],Toast.LENGTH_SHORT).show();
                             }
                             break;
                         case 5:
@@ -117,7 +118,7 @@ public class GameState {
                             }
                             else{
                                 this.status = "";
-                                Toast.makeText(context,legalMove[1],Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,legalMove[1],Toast.LENGTH_SHORT).show();
                             }
                             break;
                         case 6:
@@ -127,7 +128,7 @@ public class GameState {
                                 this.initStatus = 7;
                                 this.status = "";
                                 //TODO make this toast say something appropriate
-                                Toast.makeText(context,"Start Game!!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(context,"Start Game!!",Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 this.status = "";
@@ -138,7 +139,11 @@ public class GameState {
                 }
                 else {
                     //TODO fix popup window below'
-                    PlayerTurn();
+
+//                    PlayerTurn();
+//                    while (chosen == EmptyTilePress.ButtonPressed){}
+
+                    Log.e(log_cat, "ButtonPressed = " + Integer.toString(EmptyTilePress.ButtonPressed));
                     gameGrid[pressedCell].setOrientation(EmptyTilePress.ButtonPressed);
 
 
@@ -169,6 +174,7 @@ public class GameState {
         Intent intent = new Intent(context,EmptyTilePress.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+
 
 
     }

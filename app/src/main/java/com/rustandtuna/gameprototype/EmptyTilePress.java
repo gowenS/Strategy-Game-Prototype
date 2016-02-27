@@ -2,6 +2,7 @@ package com.rustandtuna.gameprototype;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -16,6 +17,7 @@ public class EmptyTilePress extends Activity {
     ImageButton choose4;
     int orientation;
     public static int ButtonPressed = 0;
+    public String log_cat = "EmptyTilePress";
 
 
     @Override
@@ -31,6 +33,7 @@ public class EmptyTilePress extends Activity {
             @Override
             public void onClick(View v) {
                 EmptyTilePress.ButtonPressed = 1;
+                Log.e(log_cat, "ButtonPressed = " + Integer.toString(EmptyTilePress.ButtonPressed));
                 finish();
             }
         });
@@ -38,6 +41,7 @@ public class EmptyTilePress extends Activity {
             @Override
             public void onClick(View v) {
                 EmptyTilePress.ButtonPressed = 2;
+                Log.e(log_cat, "ButtonPressed = " + Integer.toString(EmptyTilePress.ButtonPressed));
                 finish();
             }
         });
@@ -45,6 +49,7 @@ public class EmptyTilePress extends Activity {
             @Override
             public void onClick(View v) {
                 EmptyTilePress.ButtonPressed = 3;
+                Log.e(log_cat, "ButtonPressed = " + Integer.toString(EmptyTilePress.ButtonPressed));
                 finish();
             }
         });
@@ -52,6 +57,7 @@ public class EmptyTilePress extends Activity {
             @Override
             public void onClick(View v) {
                 EmptyTilePress.ButtonPressed = 4;
+                Log.e(log_cat, "ButtonPressed = " + Integer.toString(EmptyTilePress.ButtonPressed));
                 finish();
             }
         });
