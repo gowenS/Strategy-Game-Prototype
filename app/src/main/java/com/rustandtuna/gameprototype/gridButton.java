@@ -35,6 +35,7 @@ public class gridButton extends ImageButton{
         return orientation;
     }
     public void setOrientation(int orientation) {
+
         if(orientation > 0 && orientation < 5){
             this.orientation = orientation;
         }
