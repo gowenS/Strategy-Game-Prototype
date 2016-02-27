@@ -1,7 +1,9 @@
 package com.rustandtuna.gameprototype;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -15,13 +17,16 @@ public class EmptyTilePress extends Activity {
     ImageButton choose3;
     ImageButton choose4;
     int orientation;
-    public static int ButtonPressed = 0;
+//    public static int ButtonPressed = 0;
+    public String log_cat = "EmptyTilePress";
+    Intent intent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.push_empty_btn);
+        intent = new Intent();
 
         choose1 = (ImageButton) findViewById(R.id.rotateBtn1);
         choose2 = (ImageButton) findViewById(R.id.rotateBtn2);
@@ -30,51 +35,63 @@ public class EmptyTilePress extends Activity {
         choose1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmptyTilePress.ButtonPressed = 1;
+                orientation = 1;
+                Log.e(log_cat, "ButtonPressed = 1");
+                intent.putExtra("Orientation",orientation);
+                setResult(0, intent);
                 finish();
             }
         });
         choose2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmptyTilePress.ButtonPressed = 2;
+                orientation = 2;
+                Log.e(log_cat, "ButtonPressed = 2");
+                intent.putExtra("Orientation", orientation);
+                setResult(0, intent);
                 finish();
             }
         });
         choose3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmptyTilePress.ButtonPressed = 3;
+                orientation = 3;
+                Log.e(log_cat, "ButtonPressed = 3");
+                intent.putExtra("Orientation", orientation);
+                setResult(0,intent);
                 finish();
             }
         });
         choose4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EmptyTilePress.ButtonPressed = 4;
+                orientation= 4;
+                Log.e(log_cat, "ButtonPressed = 4");
+                intent.putExtra("Orientation",orientation);
+                setResult(0,intent);
                 finish();
             }
         });
     }
 
-    protected void rotateTile(int i){
-        switch (i){
-            case 1:
-                this.orientation = 1;
-                break;
-            case 2:
-                this.orientation = 2;
-                break;
-            case 3:
-                this.orientation = 3;
-                break;
-            case 4:
-                this.orientation = 4;
-                break;
-        }
-        EmptyTilePress.ButtonPressed = this.orientation;
-        finish();
-
-    }
+//    protected void rotateTile(int i){
+//        switch (i){
+//            case 1:
+//                this.orientation = 1;
+//                break;
+//            case 2:
+//                this.orientation = 2;
+//                break;
+//            case 3:
+//                this.orientation = 3;
+//                break;
+//            case 4:
+//                this.orientation = 4;
+//                break;
+//        }
+//        EmptyTilePress.ButtonPressed = this.orientation;
+//        finish();
+//
+//    }
 
 }

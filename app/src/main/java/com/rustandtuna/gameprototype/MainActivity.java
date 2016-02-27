@@ -1,16 +1,26 @@
 package com.rustandtuna.gameprototype;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
+
+    final String type1 = "close";
+    final String type2 = "mounted";
+    final String type3 = "ranged";
+    String status = "";
+    int initStatus = 0;
+    String[] legalMove = new String[2];
 
     //git test line
     //git test line 2
@@ -57,10 +67,14 @@ public class MainActivity extends AppCompatActivity {
     gridButton h4Butt;
 
     gridButton[] gameGrid = new gridButton[32] ;
-    GameState thisGame;
+
+    boolean turnOnChoose = false;
+
 
     public PopupWindow playerTurnPopup;
     LinearLayout popupLayout;
+
+    int pressedCell;
 
 
 
@@ -84,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         a1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(0);
+                buttonPress(0);
             }
         });
         a2Butt = (gridButton) findViewById(R.id.a2Button);
@@ -93,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         a2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(1);
+                buttonPress(1);
             }
         });
         a3Butt = (gridButton) findViewById(R.id.a3Button);
@@ -102,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         a3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(2);
+                buttonPress(2);
             }
         });
         a4Butt = (gridButton) findViewById(R.id.a4Button);
@@ -111,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         a4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(3);
+                buttonPress(3);
             }
         });
         b1Butt = (gridButton) findViewById(R.id.b1Button);
@@ -120,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         b1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(4);
+                buttonPress(4);
             }
         });
         b2Butt = (gridButton) findViewById(R.id.b2Button);
@@ -129,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         b2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(5);
+                buttonPress(5);
             }
         });
         b3Butt = (gridButton) findViewById(R.id.b3Button);
@@ -138,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         b3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(6);
+                buttonPress(6);
             }
         });
         b4Butt = (gridButton) findViewById(R.id.b4Button);
@@ -147,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         b4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(7);
+                buttonPress(7);
             }
         });
         c1Butt = (gridButton) findViewById(R.id.c1Button);
@@ -156,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         c1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(8);
+                buttonPress(8);
             }
         });
         c2Butt = (gridButton) findViewById(R.id.c2Button);
@@ -165,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         c2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(9);
+                buttonPress(9);
             }
         });
         c3Butt = (gridButton) findViewById(R.id.c3Button);
@@ -174,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         c3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(10);
+                buttonPress(10);
             }
         });
         c4Butt = (gridButton) findViewById(R.id.c4Button);
@@ -183,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         c4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(11);
+                buttonPress(11);
             }
         });
         d1Butt = (gridButton) findViewById(R.id.d1Button);
@@ -192,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         d1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(12);
+                buttonPress(12);
             }
         });
         d2Butt = (gridButton) findViewById(R.id.d2Button);
@@ -201,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         d2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(13);
+                buttonPress(13);
             }
         });
         d3Butt = (gridButton) findViewById(R.id.d3Button);
@@ -210,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         d3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(14);
+                buttonPress(14);
             }
         });
         d4Butt = (gridButton) findViewById(R.id.d4Button);
@@ -219,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         d4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(15);
+                buttonPress(15);
             }
         });
         e1Butt = (gridButton) findViewById(R.id.e1Button);
@@ -228,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
         e1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(16);
+                buttonPress(16);
             }
         });
         e2Butt = (gridButton) findViewById(R.id.e2Button);
@@ -237,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         e2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(17);
+                buttonPress(17);
             }
         });
         e3Butt = (gridButton) findViewById(R.id.e3Button);
@@ -246,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         e3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(18);
+                buttonPress(18);
             }
         });
         e4Butt = (gridButton) findViewById(R.id.e4Button);
@@ -255,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         e4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(19);
+                buttonPress(19);
             }
         });
         f1Butt = (gridButton) findViewById(R.id.f1Button);
@@ -264,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         f1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(20);
+                buttonPress(20);
             }
         });
         f2Butt = (gridButton) findViewById(R.id.f2Button);
@@ -273,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
         f2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(21);
+                buttonPress(21);
             }
         });
         f3Butt = (gridButton) findViewById(R.id.f3Button);
@@ -282,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         f3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(22);
+                buttonPress(22);
             }
         });
         f4Butt = (gridButton) findViewById(R.id.f4Button);
@@ -291,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
         f4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(23);
+                buttonPress(23);
             }
         });
         g1Butt = (gridButton) findViewById(R.id.g1Button);
@@ -300,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
         g1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(24);
+                buttonPress(24);
             }
         });
         g2Butt = (gridButton) findViewById(R.id.g2Button);
@@ -309,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
         g2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(25);
+                buttonPress(25);
             }
         });
         g3Butt = (gridButton) findViewById(R.id.g3Button);
@@ -318,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
         g3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(26);
+                buttonPress(26);
             }
         });
         g4Butt = (gridButton) findViewById(R.id.g4Button);
@@ -327,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         g4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(27);
+                buttonPress(27);
             }
         });
         h1Butt = (gridButton) findViewById(R.id.h1Button);
@@ -336,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         h1Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(28);
+                buttonPress(28);
             }
         });
         h2Butt = (gridButton) findViewById(R.id.h2Button);
@@ -345,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
         h2Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(29);
+                buttonPress(29);
             }
         });
         h3Butt = (gridButton) findViewById(R.id.h3Button);
@@ -354,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
         h3Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(30);
+                buttonPress(30);
             }
         });
         h4Butt = (gridButton) findViewById(R.id.h4Button);
@@ -363,14 +377,17 @@ public class MainActivity extends AppCompatActivity {
         h4Butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thisGame.buttonPress(31);
+                buttonPress(31);
             }
         });
+
+
+
 //        PlayerTurn();
 
-        thisGame = new GameState();
+
         Context gameContext = getApplicationContext();
-        thisGame.initializeGame(gameGrid,gameContext);
+        initializeGame();
 
     }
 
@@ -394,6 +411,172 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initializeGame(){
+
+        status = "init";
+        this.runGameState(-1);
+
+    }
+    public String runGameState(int pressedCell){
+//        Log.e(log_cat,"Entered runGameState method");
+        switch (this.status){
+            case "init":
+//                Log.e(log_cat,"runGameState initialized");
+                Toast.makeText(this.getApplicationContext(), "Player one place first piece", Toast.LENGTH_SHORT).show();
+                this.initStatus = 1;
+                this.status = "";
+                break;
+            case "btn_prs":
+                //Log.e(log_cat, "Entered btn_prs switch case");
+                if (initStatus < 7){
+                    switch (this.initStatus){
+                        case 1:
+                            //Log.e(log_cat,"button pressed");
+                            PlayerPiece p1t1 = new PlayerPiece(1,"close");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p1t1,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 2;
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),"Player two place first piece",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_LONG).show();
+                            }
+
+                            break;
+                        case 2:
+                            PlayerPiece p2t1 = new PlayerPiece(2,"close");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p2t1,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 3;
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),"Player one place second piece",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_LONG).show();
+                            }
+
+                            break;
+                        case 3:
+                            PlayerPiece p1t2 = new PlayerPiece(1,"mounted");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p1t2,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 4;
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),"Player two place second piece",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_LONG).show();
+                            }
+                            break;
+                        case 4:
+                            PlayerPiece p2t2 = new PlayerPiece(2,"mounted");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p2t2,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 5;
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),"Player one place third piece",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_LONG).show();
+                            }
+                            break;
+                        case 5:
+                            PlayerPiece p1t3 = new PlayerPiece(1,"ranged");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p1t3,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 6;
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_LONG).show();
+                            }
+                            break;
+                        case 6:
+                            PlayerPiece p2t3 = new PlayerPiece(2,"ranged");
+                            legalMove = gameGrid[pressedCell].inhabitCell(p2t3,pressedCell);
+                            if(legalMove[0] == ""){
+                                this.initStatus = 7;
+                                this.status = "";
+                                //TODO make this toast say something appropriate
+                                Toast.makeText(this.getApplicationContext(),"Start Game!!",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                this.status = "";
+                                Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                    }
+                }
+                else {
+                    //TODO fix popup window below and remove turnOnChoose
+                    if(!turnOnChoose){
+                        PlayerTurn();
+                    }else{
+//                        gameGrid[pressedCell].setOrientation();
+                        turnOnChoose = false;
+                    }
+
+
+
+
+//                    switch (this.trackPlayerTurn){
+//                        case 1:
+//                            break;
+//                        case 2:
+//                            break;
+//                    }
+                }
+                break;
+        }
+
+        //Player 1 place piece one
+        return null;
+
+
+    }
+    public void buttonPress(int pressedCell){
+        status = "btn_prs";
+//        Log.e(log_cat,"status = "+ status + " ; initStatus = " + initStatus+ " ; pressedCell = " + pressedCell);
+        this.pressedCell = pressedCell;
+        runGameState(pressedCell);
+
+    }
+    public void PlayerTurn(){
+        //TODO add method to handle moving player
+        if (gameGrid[this.pressedCell].isOccupied){
+            Toast.makeText(this.getApplicationContext(),"Functionality to move player not build yet.",Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(this.getApplicationContext(),EmptyTilePress.class);
+            startActivityForResult(intent, 2);
+//            Log.e(log_cat,"Launched new intent");
+        }
+
+
+    }
+
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2){
+            if (data != null){
+                int orientation = data.getIntExtra("Orientation",0);
+                Log.e(log_cat,"onActivityResult called.");
+                gameGrid[this.pressedCell].setOrientation(orientation);
+
+
+            }
+
+        }
+
     }
 
 //    public void PlayerTurn(){
