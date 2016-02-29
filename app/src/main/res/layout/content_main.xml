@@ -22,113 +22,108 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
-
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/a1Button"
             android:longClickable="false"
-            android:layout_margin="5dp" />
+            android:layout_margin="2dp" />
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/b1Button"
-            android:layout_margin="5dp" />
+            android:layout_margin="2dp" />
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/c1Button"
             android:longClickable="false"
-            android:layout_margin="5dp" />
+            android:layout_margin="2dp" />
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/d1Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/e1Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/f1Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/g1Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/h1Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
     </LinearLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical">
-
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/a2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
-
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/b2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/c2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/d2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/e2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/f2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/g2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/h2Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
     </LinearLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -139,51 +134,50 @@
             android:layout_height="52dp"
             android:id="@+id/a3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/b3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/c3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/d3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/e3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/f3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/g3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/h3Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
     </LinearLayout>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -195,53 +189,50 @@
             android:layout_height="52dp"
             android:id="@+id/a4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/b4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/c4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/d4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/e4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/f4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/g4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
+            android:layout_margin="2dp"/>
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:id="@+id/h4Button"
             android:longClickable="false"
-            android:layout_margin="5dp"/>
-
+            android:layout_margin="2dp"/>
     </LinearLayout>
-
-
 </LinearLayout>
 
 

@@ -67,14 +67,12 @@ public class MainActivity extends AppCompatActivity {
     gridButton h4Butt;
 
     gridButton[] gameGrid = new gridButton[32] ;
-
     boolean turnOnChoose = false;
-
-
     public PopupWindow playerTurnPopup;
     LinearLayout popupLayout;
-
     int pressedCell;
+    int whichPlayerTurn = 1;
+    int movesUsedThisTurn = 0;
 
 
 
@@ -519,7 +517,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     //TODO fix popup window below and remove turnOnChoose
                     if(!turnOnChoose){
-                        PlayerTurn();
+                        PlayerTurn(whichPlayerTurn);
                     }else{
 //                        gameGrid[pressedCell].setOrientation();
                         turnOnChoose = false;
@@ -550,18 +548,40 @@ public class MainActivity extends AppCompatActivity {
         runGameState(pressedCell);
 
     }
-    public void PlayerTurn(){
+    public void PlayerTurn(int whichPlayerTurn){
         //TODO add method to handle moving player
-        if (gameGrid[this.pressedCell].isOccupied){
-            Toast.makeText(this.getApplicationContext(),"Functionality to move player not build yet.",Toast.LENGTH_SHORT).show();
-        } else {
-            Intent intent = new Intent(this.getApplicationContext(),EmptyTilePress.class);
-            startActivityForResult(intent, 2);
-//            Log.e(log_cat,"Launched new intent");
+        switch (whichPlayerTurn){
+            case 1:
+                if (pressedCell > (32/2)-1) {
+                    if (gameGrid[this.pressedCell].isOccupied) {
+                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not build yet.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                        startActivityForResult(intent, 2);
+                    }
+                    nextPlayerTurn();
+                } else{
+                Toast.makeText(this.getApplicationContext(), "This is not your side of the board.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 2:
+                if (pressedCell < (32/2)) {
+                    if (gameGrid[this.pressedCell].isOccupied) {
+                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not build yet.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                        startActivityForResult(intent, 2);
+                    }
+                    nextPlayerTurn();
+                } else{
+                    Toast.makeText(this.getApplicationContext(), "This is not your side of the board.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
         }
-
-
     }
+
+
 
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -575,6 +595,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+        }
+
+    }
+
+    public void nextPlayerTurn(){
+        if (movesUsedThisTurn < 2){
+            movesUsedThisTurn++;
+        }
+        else{
+            if (whichPlayerTurn == 1){
+                whichPlayerTurn = 2;
+            } else {
+                whichPlayerTurn =1;
+            }
         }
 
     }
