@@ -17,6 +17,13 @@
     android:id="@+id/content_main">
 
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/player1TurnIndicator"
+        android:layout_gravity="left|bottom"
+        android:background="@drawable/player_turn_off" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -45,6 +52,13 @@
             android:id="@+id/d1Button"
             android:longClickable="false"
             android:layout_margin="2dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:id="@+id/imageView"
+            android:background="#000000" />
+
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
@@ -99,6 +113,13 @@
             android:id="@+id/d2Button"
             android:longClickable="false"
             android:layout_margin="2dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:id="@+id/imageView2"
+            android:background="#000000" />
+
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
@@ -124,6 +145,7 @@
             android:longClickable="false"
             android:layout_margin="2dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -153,6 +175,13 @@
             android:id="@+id/d3Button"
             android:longClickable="false"
             android:layout_margin="2dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:id="@+id/imageView3"
+            android:background="#000000" />
+
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
@@ -208,6 +237,13 @@
             android:id="@+id/d4Button"
             android:longClickable="false"
             android:layout_margin="2dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:id="@+id/imageView4"
+            android:background="#000000" />
+
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
             android:layout_height="52dp"
@@ -233,6 +269,13 @@
             android:longClickable="false"
             android:layout_margin="2dp"/>
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/player2TurnIndicator"
+        android:layout_gravity="top|left|right"
+        android:background="@drawable/player_turn_off" />
 </LinearLayout>
 
 
