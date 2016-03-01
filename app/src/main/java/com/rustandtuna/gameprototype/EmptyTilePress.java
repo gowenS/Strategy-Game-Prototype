@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -16,6 +17,7 @@ public class EmptyTilePress extends Activity {
     ImageButton choose2;
     ImageButton choose3;
     ImageButton choose4;
+    Button choose5;
     int orientation;
 
 //    public static int ButtonPressed = 0;
@@ -34,6 +36,7 @@ public class EmptyTilePress extends Activity {
         choose2 = (ImageButton) findViewById(R.id.rotateBtn2);
         choose3 = (ImageButton) findViewById(R.id.rotateBtn3);
         choose4 = (ImageButton) findViewById(R.id.rotateBtn4);
+        choose5 = (Button) findViewById(R.id.buttonCancelOrientation);
         choose1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +74,16 @@ public class EmptyTilePress extends Activity {
 
                 orientation= 4;
                 Log.e(log_cat, "ButtonPressed = 4");
+                intent.putExtra("Orientation",orientation);
+                setResult(0,intent);
+                finish();
+            }
+        });
+        choose5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orientation= 5;
+                Log.e(log_cat, "ButtonPressed = Cancel");
                 intent.putExtra("Orientation",orientation);
                 setResult(0,intent);
                 finish();

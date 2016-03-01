@@ -35,6 +35,10 @@ public class gridButton extends ImageButton{
         return orientation;
     }
     public void setOrientation(int orientation) {
+//        int orientNow = this.getOrientation();
+//        if(orientNow == orientation){
+//            //TODO build error catcher here
+//        }
 
         if(orientation > 0 && orientation < 5){
             this.orientation = orientation;
@@ -47,7 +51,7 @@ public class gridButton extends ImageButton{
     public String[] inhabitCell(PlayerPiece playerPiece, int thisCoord){
 
         String[] out = new String[2];
-        this.playerPiece = playerPiece;
+        this.setPlayerPiece(playerPiece);
         this.p1p2 = playerPiece.getP1p2();
 
         //Check if this is spot is taken already
@@ -80,6 +84,20 @@ public class gridButton extends ImageButton{
     public void emptyCell(){
         this.isOccupied = false;
         this.playerPiece = null;
+        switch (orientation){
+            case 1:
+                this.setBackgroundResource(R.drawable.backone);
+                break;
+            case 2:
+                this.setBackgroundResource(R.drawable.backtwo);
+                break;
+            case 3:
+                this.setBackgroundResource(R.drawable.backthree);
+                break;
+            case 4:
+                this.setBackgroundResource(R.drawable.backfour);
+                break;
+        }
     }
 
 //    public void pressMe(){
@@ -146,7 +164,7 @@ public class gridButton extends ImageButton{
                     break;
             }
 
-            //TODO update background with playerPiece renderings
+
         }
         else{
             switch (orientation){
@@ -167,5 +185,11 @@ public class gridButton extends ImageButton{
 
     }
 
+    public PlayerPiece getPlayerPiece() {
+        return playerPiece;
+    }
 
+    public void setPlayerPiece(PlayerPiece playerPiece) {
+        this.playerPiece = playerPiece;
+    }
 }

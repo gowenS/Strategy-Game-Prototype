@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
     int movesUsedThisTurn = 0;
     ImageView player1TurnIndicator;
     ImageView player2TurnIndicator;
+    boolean moveToggle = false;
+    int[] availableTiles = new int[4];
+    boolean check = false;
+    PlayerPiece movingPlayer;
+    int originCellMoving;
 
 
 
@@ -571,28 +575,65 @@ public class MainActivity extends AppCompatActivity {
     public void PlayerTurn(int whichPlayerTurn){
         //TODO add method to handle moving player
         switch (whichPlayerTurn){
+            //Player 1 turn
             case 1:
+
+                //Check to see that P1 is using correct side of the board
                 if (pressedCell > (32/2)-1) {
-                    if (gameGrid[this.pressedCell].isOccupied) {
-                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not build yet.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
-                        startActivityForResult(intent, 2);
+
+                    //Executes if a player has been chosen for movement
+                    if(moveToggle){
+                        for (int j = 0; j<3; j++){
+                            if (availableTiles[j] == pressedCell){
+                                movingPlayer = gameGrid[originCellMoving].getPlayerPiece();
+                                legalMove = gameGrid[pressedCell].inhabitCell(movingPlayer, pressedCell);
+                                if(legalMove[0] == ""){
+                                    gameGrid[originCellMoving].emptyCell();
+                                    for(int k = 0; k <3 ; k++){
+                                        if(availableTiles[k] != pressedCell && availableTiles[k]!= -1)
+                                            gameGrid[availableTiles[k]].emptyCell();
+                                    }
+                                    nextPlayerTurn();
+
+//                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
+                                } else{
+                                    Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                        //Executes if player has not been chosen for movement yet
+                    }else{
+                        if (gameGrid[this.pressedCell].isOccupied) {
+//                            Toast.makeText(this.getApplicationContext(), "Functionality to move player not built yet.", Toast.LENGTH_SHORT).show();
+                            availableTiles = checkMove(whichPlayerTurn,pressedCell);
+                            showAvailableMoves(availableTiles,pressedCell);
+                            moveToggle = true;
+                            originCellMoving = pressedCell;
+                        } else {
+                            Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                            startActivityForResult(intent, 2);
+                        }
                     }
-                    nextPlayerTurn();
+
+//                    nextPlayerTurn();
                 } else{
                 Toast.makeText(this.getApplicationContext(), "This is not your side of the board.", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            //Player 2 turn
+
+            //TODO add player movement to this case
             case 2:
                 if (pressedCell < (32/2)) {
                     if (gameGrid[this.pressedCell].isOccupied) {
-                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not build yet.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not built yet.", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
                         startActivityForResult(intent, 2);
                     }
-                    nextPlayerTurn();
+//                    nextPlayerTurn();
                 } else{
                     Toast.makeText(this.getApplicationContext(), "This is not your side of the board.", Toast.LENGTH_SHORT).show();
                 }
@@ -610,9 +651,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 2){
             if (data != null){
                 int orientation = data.getIntExtra("Orientation",0);
-                Log.e(log_cat,"onActivityResult called.");
-                gameGrid[this.pressedCell].setOrientation(orientation);
+//                Log.e(log_cat,"onActivityResult called.");
+                if((orientation != 5)&&(orientation != gameGrid[pressedCell].getOrientation())){
+                    gameGrid[this.pressedCell].setOrientation(orientation);
+                    nextPlayerTurn();
+                }else if(orientation == gameGrid[pressedCell].getOrientation()){
 
+                }
 
             }
 
@@ -642,6 +687,70 @@ public class MainActivity extends AppCompatActivity {
             movesUsedThisTurn = 0;
 //            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
 
+        }
+
+    }
+
+    public int[] checkMove(int playerIdentifier, int location){
+        int[] out = {-1,-1,-1,-1};
+        switch (playerIdentifier){
+            case 1:
+                if (location >19){
+                    //Check above
+                    check = gameGrid[location-4].isOccupied;
+                    if(!check){
+                        out[0] = location-4;
+                    }else{
+                        out[0] = -1;
+                    }
+                }
+                if (location%4 != 0){
+                    //Check left
+                    check = gameGrid[location-1].isOccupied;
+                    if(!check){
+                        out[1] = location-1;
+                    }else{
+                        out[1] = -1;
+                    }
+                }
+                if ((location-3)%4 != 0){
+                    //Check right
+                    check = gameGrid[location+1].isOccupied;
+                    if(!check){
+                        out[2] = location+1;
+                    }else{
+                        out[2] = -1;
+                    }
+                }
+                if (location <28){
+                    //check below
+                    check = gameGrid[location+4].isOccupied;
+                    if(!check){
+                        out[3] = location+4;
+                    }else{
+                        out[3] = -1;
+                    }
+                }
+
+        }
+        //out = {up, left, right, down}
+        return out;
+    }
+
+    public void showAvailableMoves(int[] legals, int location){
+
+        //legals = {up, left, right, down}
+        if (legals[0] != -1){
+            gameGrid[location-4].setBackgroundResource(R.drawable.available_tile);
+        }
+        if (legals[1] != -1){
+            gameGrid[location-1].setBackgroundResource(R.drawable.available_tile);
+        }
+        if (legals[2] != -1){
+            gameGrid[location+1].setBackgroundResource(R.drawable.available_tile);
+        }
+        if (legals[3] != -1){
+            gameGrid[location+4].setBackgroundResource(R.drawable.available_tile);
         }
 
     }
