@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -583,16 +584,20 @@ public class MainActivity extends AppCompatActivity {
 
                     //Executes if a player has been chosen for movement
                     if(moveToggle){
-                        for (int j = 0; j<3; j++){
+                        for (int j = 0; j<4; j++){
                             if (availableTiles[j] == pressedCell){
                                 movingPlayer = gameGrid[originCellMoving].getPlayerPiece();
                                 legalMove = gameGrid[pressedCell].inhabitCell(movingPlayer, pressedCell);
                                 if(legalMove[0] == ""){
                                     gameGrid[originCellMoving].emptyCell();
-                                    for(int k = 0; k <3 ; k++){
-                                        if(availableTiles[k] != pressedCell && availableTiles[k]!= -1)
+                                    for(int k = 0; k <4 ; k++){
+                                        if(availableTiles[k] != pressedCell && availableTiles[k]!= -1){
                                             gameGrid[availableTiles[k]].emptyCell();
+                                            Log.e(log_cat,"k: " + k + ", corresponding tile: "+availableTiles[k]);
+                                        }
+
                                     }
+                                    moveToggle = false;
                                     nextPlayerTurn();
 
 //                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();

@@ -84,7 +84,7 @@ public class gridButton extends ImageButton{
     public void emptyCell(){
         this.isOccupied = false;
         this.playerPiece = null;
-        switch (orientation){
+        switch (this.orientation){
             case 1:
                 this.setBackgroundResource(R.drawable.backone);
                 break;
