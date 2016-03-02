@@ -571,8 +571,8 @@ public class MainActivity extends AppCompatActivity {
 //        Log.e(log_cat,"status = "+ status + " ; initStatus = " + initStatus+ " ; pressedCell = " + pressedCell);
         this.pressedCell = pressedCell;
         runGameState(pressedCell);
-
     }
+
     public void PlayerTurn(int whichPlayerTurn){
         //TODO add method to handle moving player
         switch (whichPlayerTurn){
