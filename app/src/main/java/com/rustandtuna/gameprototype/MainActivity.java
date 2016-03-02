@@ -584,6 +584,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //Executes if a player has been chosen for movement
                     if(moveToggle){
+                        //TODO make this code a method
                         for (int j = 0; j<4; j++){
                             if (availableTiles[j] == pressedCell){
                                 movingPlayer = gameGrid[originCellMoving].getPlayerPiece();
@@ -605,6 +606,18 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_SHORT).show();
                                 }
                             }
+                        }
+
+                        //Cancel moving player on a turn by clicking a second time on occupied cell.
+                        if (pressedCell == originCellMoving){
+                            for(int k = 0; k <4 ; k++){
+                                if(availableTiles[k] != pressedCell && availableTiles[k]!= -1){
+                                    gameGrid[availableTiles[k]].emptyCell();
+                                    Log.e(log_cat,"k: " + k + ", corresponding tile: "+availableTiles[k]);
+                                }
+
+                            }
+                            moveToggle = false;
                         }
 
                         //Executes if player has not been chosen for movement yet
@@ -632,12 +645,55 @@ public class MainActivity extends AppCompatActivity {
             //TODO add player movement to this case
             case 2:
                 if (pressedCell < (32/2)) {
-                    if (gameGrid[this.pressedCell].isOccupied) {
-                        Toast.makeText(this.getApplicationContext(), "Functionality to move player not built yet.", Toast.LENGTH_SHORT).show();
+
+                    //Executes if a player has been chosen for movement
+                    if(moveToggle) {
+                        //TODO make this code a method
+                        for (int j = 0; j < 4; j++) {
+                            if (availableTiles[j] == pressedCell) {
+                                movingPlayer = gameGrid[originCellMoving].getPlayerPiece();
+                                legalMove = gameGrid[pressedCell].inhabitCell(movingPlayer, pressedCell);
+                                if (legalMove[0] == "") {
+                                    gameGrid[originCellMoving].emptyCell();
+                                    for (int k = 0; k < 4; k++) {
+                                        if (availableTiles[k] != pressedCell && availableTiles[k] != -1) {
+                                            gameGrid[availableTiles[k]].emptyCell();
+                                            Log.e(log_cat, "k: " + k + ", corresponding tile: " + availableTiles[k]);
+                                        }
+
+                                    }
+                                    moveToggle = false;
+                                    nextPlayerTurn();
+
+//                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(this.getApplicationContext(), legalMove[1], Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                        if (pressedCell == originCellMoving){
+                            for(int k = 0; k <4 ; k++){
+                                if(availableTiles[k] != pressedCell && availableTiles[k]!= -1){
+                                    gameGrid[availableTiles[k]].emptyCell();
+                                    Log.e(log_cat,"k: " + k + ", corresponding tile: "+availableTiles[k]);
+                                }
+
+                            }
+                            moveToggle = false;
+                        }
                     } else {
-                        Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
-                        startActivityForResult(intent, 2);
+                        if (gameGrid[this.pressedCell].isOccupied) {
+//                            Toast.makeText(this.getApplicationContext(), "Functionality to move player not built yet.", Toast.LENGTH_SHORT).show();
+                            availableTiles = checkMove(whichPlayerTurn,pressedCell);
+                            showAvailableMoves(availableTiles,pressedCell);
+                            moveToggle = true;
+                            originCellMoving = pressedCell;
+                        } else {
+                            Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                            startActivityForResult(intent, 2);
+                        }
                     }
+
 //                    nextPlayerTurn();
                 } else{
                     Toast.makeText(this.getApplicationContext(), "This is not your side of the board.", Toast.LENGTH_SHORT).show();
@@ -736,6 +792,45 @@ public class MainActivity extends AppCompatActivity {
                         out[3] = -1;
                     }
                 }
+                break;
+            case 2:
+                if (location >3){
+                    //Check above
+                    check = gameGrid[location-4].isOccupied;
+                    if(!check){
+                        out[0] = location-4;
+                    }else{
+                        out[0] = -1;
+                    }
+                }
+                if (location%4 != 0){
+                    //Check left
+                    check = gameGrid[location-1].isOccupied;
+                    if(!check){
+                        out[1] = location-1;
+                    }else{
+                        out[1] = -1;
+                    }
+                }
+                if ((location-3)%4 != 0){
+                    //Check right
+                    check = gameGrid[location+1].isOccupied;
+                    if(!check){
+                        out[2] = location+1;
+                    }else{
+                        out[2] = -1;
+                    }
+                }
+                if (location <12){
+                    //check below
+                    check = gameGrid[location+4].isOccupied;
+                    if(!check){
+                        out[3] = location+4;
+                    }else{
+                        out[3] = -1;
+                    }
+                }
+                break;
 
         }
         //out = {up, left, right, down}
