@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     int initStatus = 0;
     String[] legalMove = new String[2];
     FoundPath[] attackPaths = new FoundPath[9];
+    PlayerPiece p1t1 = new PlayerPiece(1,"close");
+    PlayerPiece p1t2 = new PlayerPiece(1,"mounted");
+    PlayerPiece p1t3 = new PlayerPiece(1,"ranged");
+    PlayerPiece p2t1 = new PlayerPiece(2,"close");
+    PlayerPiece p2t2 = new PlayerPiece(2,"mounted");
+    PlayerPiece p2t3 = new PlayerPiece(2,"ranged");
 
     //git test line
     //git test line 2
@@ -433,12 +439,7 @@ public class MainActivity extends AppCompatActivity {
     public String runGameState(int pressedCell){
 //        Log.e(log_cat,"Entered runGameState method");
         allAttackPaths = new FoundPath[6];
-        PlayerPiece p1t1 = new PlayerPiece(1,"close");
-        PlayerPiece p1t2 = new PlayerPiece(1,"mounted");
-        PlayerPiece p1t3 = new PlayerPiece(1,"ranged");
-        PlayerPiece p2t1 = new PlayerPiece(1,"close");
-        PlayerPiece p2t2 = new PlayerPiece(1,"mounted");
-        PlayerPiece p2t3 = new PlayerPiece(1,"ranged");
+
 
         for (int l = 0; l<6 ; l++){
             allAttackPaths[l] = new FoundPath();
@@ -734,6 +735,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextPlayerTurn(){
+        FoundPath foundPath = new FoundPath();
+        if(whichPlayerTurn == 1){
+            Log.e(log_cat,"Attempting to check path.");
+            PathFind(whichPlayerTurn,playersInGame[0].getCoord(),playersInGame[0],foundPath, 0);
+            PathFind(whichPlayerTurn,playersInGame[1].getCoord(),playersInGame[1],foundPath,0);
+            PathFind(whichPlayerTurn,playersInGame[2].getCoord(),playersInGame[2],foundPath,0);
+        }else{
+            PathFind(whichPlayerTurn,playersInGame[3].getCoord(),playersInGame[3],foundPath,0);
+            PathFind(whichPlayerTurn,playersInGame[4].getCoord(),playersInGame[4],foundPath,0);
+            PathFind(whichPlayerTurn,playersInGame[5].getCoord(),playersInGame[5],foundPath,0);
+        }
+
         if (movesUsedThisTurn < 1){
             movesUsedThisTurn++;
 //            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
@@ -862,12 +875,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void PathFind(int whichPlayerTurn, int originCell,PlayerPiece originPlayerPiece,FoundPath pathFound,int attackPathIndex){
         PlayerPiece foundPlayer;
+        Log.e(log_cat,"Current cell: " +Integer.toString(originCell));
         if(whichPlayerTurn == 1){
             //Check above
             if (originCell > 3){
+                Log.e(log_cat,"Checking above " + Integer.toString(originCell));
                 if (gameGrid[originCell-4].isOccupied){
                     foundPlayer = gameGrid[originCell-4].getPlayerPiece();
-                    if (foundPlayer.p1p2 == 2){
+                    if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
                         attackPaths[attackPathIndex].setCells(pathFound.getCells());
                         attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
@@ -875,17 +890,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-4].getOrientation())){
+                    if(originCell == originPlayerPiece.getCoord()){
+                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-4)+ " to the path.");
                         pathFound.next(originCell-4);
                         PathFind(whichPlayerTurn, (originCell - 4), originPlayerPiece, pathFound,attackPathIndex);
+                    }else{
+                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-4].getOrientation())){
+                            Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-4)+ " to the path.");
+                            pathFound.next(originCell-4);
+                            PathFind(whichPlayerTurn, (originCell - 4), originPlayerPiece, pathFound,attackPathIndex);
+                        }
                     }
+
                 }
             }
             //Check right
             if ((originCell-3)%4 != 0){
+                Log.e(log_cat,"Checking right of " + Integer.toString(originCell));
                 if (gameGrid[originCell+1].isOccupied){
                     foundPlayer = gameGrid[originCell+1].getPlayerPiece();
-                    if (foundPlayer.p1p2 == 2){
+                    if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
                         attackPaths[attackPathIndex].setCells(pathFound.getCells());
                         attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
@@ -893,17 +917,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+1].getOrientation())){
+                    if (originCell == originPlayerPiece.getCoord()){
+                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+1)+ " to the path.");
                         pathFound.next(originCell+1);
                         PathFind(whichPlayerTurn,(originCell+1),originPlayerPiece,pathFound, attackPathIndex);
+                    } else {
+                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+1].getOrientation())){
+                            Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+1)+ " to the path.");
+                            pathFound.next(originCell+1);
+                            PathFind(whichPlayerTurn,(originCell+1),originPlayerPiece,pathFound, attackPathIndex);
+                        }
                     }
+
                 }
             }
             //Check below
-            if (originCell > 27){
+            if (originCell < 28){
+                Log.e(log_cat,"Checking below " + Integer.toString(originCell));
                 if (gameGrid[originCell+1].isOccupied){
                     foundPlayer = gameGrid[originCell+4].getPlayerPiece();
-                    if (foundPlayer.p1p2 == 2){
+                    if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
                         attackPaths[attackPathIndex].setCells(pathFound.getCells());
                         attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
@@ -911,17 +944,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())){
+                    if (originCell == originPlayerPiece.getCoord()){
+                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+4)+ " to the path.");
                         pathFound.next(originCell+4);
                         PathFind(whichPlayerTurn,(originCell+4),originPlayerPiece,pathFound, attackPathIndex);
+                    } else{
+                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())){
+                            Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+4)+ " to the path.");
+                            pathFound.next(originCell+4);
+                            PathFind(whichPlayerTurn,(originCell+4),originPlayerPiece,pathFound, attackPathIndex);
+                        }
                     }
+
                 }
             }
             //Check left
             if (originCell%4 != 0){
+                Log.e(log_cat,"Checking left of " + Integer.toString(originCell));
                 if (gameGrid[originCell-1].isOccupied){
                     foundPlayer = gameGrid[originCell-1].getPlayerPiece();
-                    if (foundPlayer.p1p2 == 2){
+                    if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
                         attackPaths[attackPathIndex].setCells(pathFound.getCells());
                         attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
@@ -929,22 +971,61 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())){
+                    if (originCell == originPlayerPiece.getCoord()){
+                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-1)+ " to the path.");
                         pathFound.next(originCell-1);
                         PathFind(whichPlayerTurn,(originCell-1),originPlayerPiece,pathFound, attackPathIndex);
+                    } else {
+                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())){
+                            Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-1)+ " to the path.");
+                            pathFound.next(originCell-1);
+                            PathFind(whichPlayerTurn,(originCell-1),originPlayerPiece,pathFound, attackPathIndex);
+                        }
                     }
+
                 }
             }
 
 
 
         }
-        pathFound.deleteLast();
+        if (originCell == originPlayerPiece.getCoord()){
+            Log.e(log_cat,"No valid attacks possible from this player's position.");
+        }else{
+            pathFound.deleteLast();
+            Log.e(log_cat,"Deleting cell: " +Integer.toString(originCell));
+        }
+
 
     }
     public boolean CanIMove(int from, int to){
         boolean result = false;
-        //TODO add code to handle orientations
+        switch (from){
+            case 1:
+                if (to == 3){
+                    result = true;
+                    Log.e(log_cat,"I found a tile with the correct orientation!");
+                }
+                break;
+            case 2:
+                if (to == 4){
+                    result = true;
+                    Log.e(log_cat,"I found a tile with the correct orientation!");
+                }
+                break;
+            case 3:
+                if (to == 1){
+                    result = true;
+                    Log.e(log_cat,"I found a tile with the correct orientation!");
+                }
+                break;
+            case 4:
+                if (to == 2){
+                    result = true;
+                    Log.e(log_cat,"I found a tile with the correct orientation!");
+                }
+                break;
+        }
         return result;
     }
 
