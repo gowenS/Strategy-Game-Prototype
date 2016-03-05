@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     boolean check = false;
     PlayerPiece movingPlayer;
     int originCellMoving;
+    FoundPath[] allAttackPaths;
 
 
 
@@ -429,6 +430,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public String runGameState(int pressedCell){
 //        Log.e(log_cat,"Entered runGameState method");
+        allAttackPaths = new FoundPath[6];
+        for (int l = 0; l<6 ; l++){
+            allAttackPaths[l] = new FoundPath();
+        }
         switch (this.status){
             case "init":
 //                Log.e(log_cat,"runGameState initialized");
@@ -852,6 +857,11 @@ public class MainActivity extends AppCompatActivity {
         if (legals[3] != -1){
             gameGrid[location+4].setBackgroundResource(R.drawable.available_tile);
         }
+
+    }
+
+    public FoundPath PathFind(int whichPlayerTurn, gridButton originCell){
+
 
     }
 
