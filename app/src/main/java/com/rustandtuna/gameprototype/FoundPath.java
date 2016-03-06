@@ -34,5 +34,11 @@ public class FoundPath {
     public void setCells(int[] cells) {
         this.cells = cells;
     }
+
+    public void resetVals() {
+        this.cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+    }
+
+
     //    public
 }
