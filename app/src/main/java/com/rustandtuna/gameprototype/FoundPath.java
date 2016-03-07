@@ -35,6 +35,14 @@ public class FoundPath {
         this.cells = cells;
     }
 
+    public int getLength(){
+        int index = 0;
+        while(cells[index]!= -1){
+            index++;
+        }
+        return index;
+    }
+
     public void resetVals() {
         this.cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     }

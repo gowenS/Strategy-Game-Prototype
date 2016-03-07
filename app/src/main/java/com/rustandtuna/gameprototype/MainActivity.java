@@ -893,6 +893,8 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+                    attackNow(pathFound,originPlayerPiece,gameGrid[originCell-4].getPlayerPiece());
+
                 }
             }
             else {
@@ -912,7 +914,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //Check right
         if ((originCell-3)%4 != 0){
-            Log.e(log_cat,"Checking right of " + Integer.toString(originCell));
+            Log.e(log_cat, "Checking right of " + Integer.toString(originCell));
             if (gameGrid[originCell+1].isOccupied){
                 Log.e(log_cat,"Found another PlayerPiece.");
                 foundPlayer = gameGrid[originCell+1].getPlayerPiece();
@@ -921,6 +923,7 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+
                 }
             }
             else {
@@ -940,7 +943,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //Check below
         if (originCell < 28){
-            Log.e(log_cat,"Checking below " + Integer.toString(originCell));
+            Log.e(log_cat, "Checking below " + Integer.toString(originCell));
             if (gameGrid[originCell+4].isOccupied){
                 Log.e(log_cat,"Found another PlayerPiece.");
                 foundPlayer = gameGrid[originCell+4].getPlayerPiece();
@@ -949,6 +952,7 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+
                 }
             }
             else {
@@ -968,7 +972,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //Check left
         if (originCell%4 != 0){
-            Log.e(log_cat,"Checking left of " + Integer.toString(originCell));
+            Log.e(log_cat, "Checking left of " + Integer.toString(originCell));
             if (gameGrid[originCell-1].isOccupied){
                 Log.e(log_cat,"Found another PlayerPiece.");
                 foundPlayer = gameGrid[originCell-1].getPlayerPiece();
@@ -998,11 +1002,38 @@ public class MainActivity extends AppCompatActivity {
             Log.e(log_cat,"Finished checking for attacks from this position.");
         }else{
             pathFound.deleteLast();
-            Log.e(log_cat,"Deleting cell: " +Integer.toString(originCell));
+            Log.e(log_cat, "Deleting cell: " + Integer.toString(originCell));
+        }
+    }
+    public void attackNow(FoundPath pathFound, PlayerPiece attacker, PlayerPiece beingAttacked){
+        //TODO add for loop to change tiles on pathFound to whatever color
+        
+        switch (attacker.getType()) {
+            //TODO add specific attack damages per PlayerPiece type
+            case "close":
+//                switch (beingAttacked.getType()){
+//                    case "close":
+//                        break;
+//                    case "mounted":
+//                        break;
+//                    case "ranged":
+//                        break;
+//                }
+                beingAttacked.inflictDamage(10);
+                break;
+            case "mounted":
+                beingAttacked.inflictDamage(10);
+                break;
+            case "ranged":
+                beingAttacked.inflictDamage(10);
+                break;
         }
 
 
+        //TODO add for loop to change tiles to pathFound to orientation 1
     }
+
+
     public boolean CanIMove(int from, int to){
         boolean result = false;
         switch (from){
