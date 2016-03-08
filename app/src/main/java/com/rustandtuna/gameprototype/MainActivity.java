@@ -3,6 +3,7 @@ package com.rustandtuna.gameprototype;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
@@ -923,6 +926,7 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+                    attackNow(pathFound,originPlayerPiece,gameGrid[originCell+1].getPlayerPiece());
 
                 }
             }
@@ -952,6 +956,7 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+                    attackNow(pathFound,originPlayerPiece,gameGrid[originCell+4].getPlayerPiece());
 
                 }
             }
@@ -981,6 +986,7 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPathIndex++;
                     Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                     //TODO add attack function
+                    attackNow(pathFound,originPlayerPiece,gameGrid[originCell-1].getPlayerPiece());
                 }
             }
             else {
@@ -1007,7 +1013,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void attackNow(FoundPath pathFound, PlayerPiece attacker, PlayerPiece beingAttacked){
         //TODO add for loop to change tiles on pathFound to whatever color
-        
+        IlluminatePath(pathFound);
         switch (attacker.getType()) {
             //TODO add specific attack damages per PlayerPiece type
             case "close":
@@ -1031,6 +1037,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //TODO add for loop to change tiles to pathFound to orientation 1
+    }
+
+    public void IlluminatePath(FoundPath pathFound){
+        for (int e = 0; e< pathFound.getLength();e++){
+            gameGrid[pathFound.getCell(e)].illuminate();
+            //TODO make this happen sequentially
+//            wait(1000);
+        }
     }
 
 

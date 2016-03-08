@@ -27,8 +27,8 @@ public class FoundPath {
     }
 
 
-    public int[] getCells() {
-        return cells;
+    public int getCell(int in) {
+        return cells[in];
     }
 
     public void setCells(int[] cells) {

@@ -185,6 +185,10 @@ public class gridButton extends ImageButton{
 
     }
 
+    public void illuminate(){
+        this.setBackgroundResource(R.drawable.available_tile);
+    }
+
     public PlayerPiece getPlayerPiece() {
         return playerPiece;
     }
