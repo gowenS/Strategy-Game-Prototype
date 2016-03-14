@@ -1014,6 +1014,9 @@ public class MainActivity extends AppCompatActivity {
     public void attackNow(FoundPath pathFound, PlayerPiece attacker, PlayerPiece beingAttacked){
         //TODO add for loop to change tiles on pathFound to whatever color
         IlluminatePath(pathFound);
+        double distance = (double) pathFound.getLength();
+        int attackDamage;
+        double defaultDamage = 10;
         switch (attacker.getType()) {
             //TODO add specific attack damages per PlayerPiece type
             case "close":
@@ -1025,25 +1028,56 @@ public class MainActivity extends AppCompatActivity {
 //                    case "ranged":
 //                        break;
 //                }
-                beingAttacked.inflictDamage(10);
+                attackDamage = (int) ((1/distance)*defaultDamage);
+                beingAttacked.inflictDamage(attackDamage);
                 break;
             case "mounted":
-                beingAttacked.inflictDamage(10);
+                beingAttacked.inflictDamage(5);
                 break;
             case "ranged":
-                beingAttacked.inflictDamage(10);
+                attackDamage = (int)((distance/10)*defaultDamage);
+                beingAttacked.inflictDamage(attackDamage);
                 break;
         }
-
-
         //TODO add for loop to change tiles to pathFound to orientation 1
+        resetPath(pathFound);
+
     }
 
     public void IlluminatePath(FoundPath pathFound){
+        final Handler handler = new Handler();
+        int delay = 0;
+
         for (int e = 0; e< pathFound.getLength();e++){
-            gameGrid[pathFound.getCell(e)].illuminate();
+            final int useThis = pathFound.getCell(e);
+            delay = delay +200;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    gameGrid[useThis].illuminate();
+                }
+            },delay);
+
             //TODO make this happen sequentially
 //            wait(1000);
+        }
+    }
+
+    public void resetPath(FoundPath pathFound){
+        final Handler handler = new Handler();
+        int delay = pathFound.getLength()*200 +100;
+
+        for (int e = 0; e< pathFound.getLength();e++){
+            final int useThis = pathFound.getCell(e);
+            delay = delay +200;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    gameGrid[useThis].setOrientation(1);
+                }
+            },delay);
+
+
         }
     }
 
