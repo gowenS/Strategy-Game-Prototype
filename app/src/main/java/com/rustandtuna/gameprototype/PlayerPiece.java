@@ -11,6 +11,7 @@ public class PlayerPiece {
     int p1p2;
 
 
+
 //  Only accepts "ranged","close", or "mounted"
     public PlayerPiece(int p1p2, String type) {
         this.p1p2 = p1p2;
@@ -53,5 +54,9 @@ public class PlayerPiece {
 
     public void inflictDamage(int damage){
         HP = HP-damage;
+        if (HP<0){
+
+            HP = 0;
+        }
     }
 }

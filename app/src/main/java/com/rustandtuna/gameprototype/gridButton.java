@@ -100,6 +100,26 @@ public class gridButton extends ImageButton{
         }
     }
 
+    public void killPlayer(){
+        this.isOccupied = false;
+        this.playerPiece.setCoord(-1);
+        this.playerPiece = null;
+        switch (this.orientation){
+            case 1:
+                this.setBackgroundResource(R.drawable.backone);
+                break;
+            case 2:
+                this.setBackgroundResource(R.drawable.backtwo);
+                break;
+            case 3:
+                this.setBackgroundResource(R.drawable.backthree);
+                break;
+            case 4:
+                this.setBackgroundResource(R.drawable.backfour);
+                break;
+        }
+    }
+
 //    public void pressMe(){
 //        if(orientation < 4){
 //            orientation++;

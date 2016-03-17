@@ -4,9 +4,11 @@ package com.rustandtuna.gameprototype;
  * Created by Sean on 3/1/2016.
  */
 public class FoundPath {
+
+    //TODO rebuild this function so it does not have a set length
     int[] cells;
     public FoundPath() {
-        cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     }
 
     public void next(int inputCell){
@@ -44,7 +46,7 @@ public class FoundPath {
     }
 
     public void resetVals() {
-        this.cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        this.cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
     }
 
 
