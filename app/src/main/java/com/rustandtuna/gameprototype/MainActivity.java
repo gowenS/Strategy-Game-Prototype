@@ -467,6 +467,7 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(this.getApplicationContext(), "Player one place first piece", Toast.LENGTH_SHORT).show();
                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                p1t1HP.setBackgroundResource(R.drawable.t1empty_turn);
                 this.initStatus = 1;
                 this.status = "";
                 break;
@@ -483,6 +484,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(this.getApplicationContext(),"Player two place first piece",Toast.LENGTH_SHORT).show();
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                p1t1HP.setBackgroundResource(R.drawable.swordp1);
+                                p2t1HP.setBackgroundResource(R.drawable.t1empty_turn);
                             }
                             else{
                                 this.status = "";
@@ -498,6 +501,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(this.getApplicationContext(),"Player one place second piece",Toast.LENGTH_SHORT).show();
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                                p2t1HP.setBackgroundResource(R.drawable.swordp1);
+                                p1t2HP.setBackgroundResource(R.drawable.t2empty_turn);
                             }
                             else{
                                 this.status = "";
@@ -513,6 +518,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(this.getApplicationContext(),"Player two place second piece",Toast.LENGTH_SHORT).show();
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                p1t2HP.setBackgroundResource(R.drawable.bow_arrow_p1);
+                                p2t2HP.setBackgroundResource(R.drawable.t2empty_turn);
                             }
                             else{
                                 this.status = "";
@@ -527,6 +534,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(this.getApplicationContext(),"Player one place third piece",Toast.LENGTH_SHORT).show();
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                                p2t2HP.setBackgroundResource(R.drawable.bow_arrow_p1);
+                                p1t3HP.setBackgroundResource(R.drawable.t3empty_turn);
                             }
                             else{
                                 this.status = "";
@@ -541,6 +550,8 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                p1t3HP.setBackgroundResource(R.drawable.seigep1);
+                                p2t3HP.setBackgroundResource(R.drawable.t3empty_turn);
 
                             }
                             else{
@@ -559,6 +570,7 @@ public class MainActivity extends AppCompatActivity {
                                 player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
                                 updateHP();
+                                p2t3HP.setBackgroundResource(R.drawable.seigep1);
                             }
                             else{
                                 this.status = "";

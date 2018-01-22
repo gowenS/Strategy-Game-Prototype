@@ -133,54 +133,81 @@ public class gridButton extends ImageButton{
     public void updateBackground(int orientation){
         if(this.isOccupied){
             String type = playerPiece.getType();
+            int whichPlayer = playerPiece.getP1p2();
             switch (type) {
                 case "ranged":
-                    switch (orientation){
+                    switch (whichPlayer) {
                         case 1:
                             this.setBackgroundResource(R.drawable.backonet3);
                             break;
                         case 2:
-                            this.setBackgroundResource(R.drawable.backtwot3);
-                            break;
-                        case 3:
-                            this.setBackgroundResource(R.drawable.backthreet3);
-                            break;
-                        case 4:
-                            this.setBackgroundResource(R.drawable.backfourt3);
+                            this.setBackgroundResource(R.drawable.backonet3p2);
                             break;
                     }
+                    //switch below is for displaying different orientations for player pieces
+//                    switch (orientation){
+//                        case 1:
+//                            this.setBackgroundResource(R.drawable.backonet3);
+//                            break;
+//                        case 2:
+//                            this.setBackgroundResource(R.drawable.backtwot3);
+//                            break;
+//                        case 3:
+//                            this.setBackgroundResource(R.drawable.backthreet3);
+//                            break;
+//                        case 4:
+//                            this.setBackgroundResource(R.drawable.backfourt3);
+//                            break;
+//                    }
                     break;
                 case "mounted":
-                    switch (orientation){
+                    switch (whichPlayer) {
                         case 1:
                             this.setBackgroundResource(R.drawable.backonet2);
                             break;
                         case 2:
-                            this.setBackgroundResource(R.drawable.backtwot2);
-                            break;
-                        case 3:
-                            this.setBackgroundResource(R.drawable.backthreet2);
-                            break;
-                        case 4:
-                            this.setBackgroundResource(R.drawable.backfourt2);
+                            this.setBackgroundResource(R.drawable.backonet2p2);
                             break;
                     }
+
+//                    switch (orientation){
+//                        case 1:
+//                            this.setBackgroundResource(R.drawable.backonet2);
+//                            break;
+//                        case 2:
+//                            this.setBackgroundResource(R.drawable.backtwot2);
+//                            break;
+//                        case 3:
+//                            this.setBackgroundResource(R.drawable.backthreet2);
+//                            break;
+//                        case 4:
+//                            this.setBackgroundResource(R.drawable.backfourt2);
+//                            break;
+//                    }
                     break;
                 case "close":
-                    switch (orientation){
+                    switch (whichPlayer) {
                         case 1:
                             this.setBackgroundResource(R.drawable.backonet1);
                             break;
                         case 2:
-                            this.setBackgroundResource(R.drawable.backtwot1);
-                            break;
-                        case 3:
-                            this.setBackgroundResource(R.drawable.backthreet1);
-                            break;
-                        case 4:
-                            this.setBackgroundResource(R.drawable.backfourt1);
+                            this.setBackgroundResource(R.drawable.backonet1p2);
                             break;
                     }
+//                    switch (orientation){
+//                        case 1:
+//                            this.setBackgroundResource(R.drawable.backonet1);
+//                            break;
+//                        case 2:
+//                            this.setBackgroundResource(R.drawable.backtwot1);
+//                            break;
+//                        case 3:
+//                            this.setBackgroundResource(R.drawable.backthreet1);
+//                            break;
+//                        case 4:
+//                            this.setBackgroundResource(R.drawable.backfourt1);
+//                            break;
+//                    }
                     break;
             }
 
