@@ -12,7 +12,7 @@
     tools:context="com.rustandtuna.gameprototype.MainActivity"
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:background="#2B5780"
     android:id="@+id/content_main">
 
@@ -21,7 +21,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="bottom|right">
+        android:gravity="bottom|end">
 
         <TextView
             android:layout_width="40dp"
@@ -29,7 +29,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:rotation="180"
             android:id="@+id/p2t3HP"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:textColor="#dadff9"
             android:textStyle="bold"
@@ -42,7 +43,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:rotation="180"
             android:id="@+id/p2t2HP"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/t2empty"
             android:textStyle="bold"
@@ -55,7 +57,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:rotation="180"
             android:id="@+id/p2t1HP"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/t1empty"
             android:textColor="#dadff9"
@@ -68,9 +71,10 @@
             android:layout_height="wrap_content"
             android:text="Player 2"
             android:id="@+id/textView2"
+            android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:rotation="180"
-            android:layout_gravity="bottom|right" />
+            android:layout_gravity="bottom|end" />
 
         <ImageView
             android:layout_width="40dp"
@@ -78,7 +82,7 @@
             android:id="@+id/player2TurnIndicator"
             android:rotation="180"
             android:background="@drawable/player_turn_off"
-            android:layout_gravity="bottom|right" />
+            android:layout_gravity="bottom|end" android:contentDescription="TODO"/>
     </LinearLayout>
 
     <LinearLayout
@@ -276,6 +280,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
+        android:focusable="true"
         android:clickable="true">
         <com.rustandtuna.gameprototype.gridButton
             android:layout_width="52dp"
@@ -339,23 +344,24 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="top|left"
-        android:gravity="top|left">
+        android:layout_gravity="top|start"
+        android:gravity="top|start">
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/player1TurnIndicator"
             android:background="@drawable/player_turn_off"
-            android:layout_gravity="top|left" />
+            android:layout_gravity="top|start" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Player 1"
             android:id="@+id/textView"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_gravity="top|left"
+            android:layout_gravity="top|start"
             android:gravity="top" />
 
         <TextView
@@ -370,7 +376,8 @@
             android:enabled="false"
             android:textSize="15dp"
             android:layout_marginLeft="10dp"
-            android:layout_gravity="top|left" />
+            android:layout_marginStart="10dp"
+            android:layout_gravity="top|start" />
 
         <TextView
             android:layout_width="40dp"
@@ -380,9 +387,10 @@
             android:background="@drawable/t2empty"
             android:gravity="top"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:textColor="#dadff9"
             android:textStyle="bold"
-            android:layout_gravity="top|left"
+            android:layout_gravity="top|start"
             android:textSize="15dp" />
 
         <TextView
@@ -392,8 +400,9 @@
             android:id="@+id/p1t3HP"
             android:textColor="#dadff9"
             android:textStyle="bold"
-            android:layout_gravity="top|left"
+            android:layout_gravity="top|start"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/t3empty"
             android:textSize="15dp" />
 
