@@ -1,5 +1,7 @@
 package com.rustandtuna.gameprototype;
 
+import java.util.Arrays;
+
 /**
  * Created by Sean on 3/1/2016.
  */
@@ -7,24 +9,41 @@ public class FoundPath {
 
     //TODO rebuild this function so it does not have a set length
     int[] cells;
+    int index = 0;
+    int capacity;
     public FoundPath() {
-        cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        capacity = 8;
+        cells = new int[capacity];
+        resetVals();
     }
 
     public void next(int inputCell){
-        int index = 0;
-        while(cells[index] != -1){
-            index++;
+//        int index = 0;
+//        while(cells[index] != -1){
+//            index++;
+//        }
+//        cells[index] = inputCell;
+        if (index == cells.length) {
+            int[] temp = new int[capacity*2];
+            Arrays.fill(temp,-1);
+            for (int j = 0; j < cells.length; j++) {
+                temp[j] = cells[j];
+            }
+            cells = temp;
+            capacity = capacity*2;
         }
         cells[index] = inputCell;
+        index++;
     }
 
     public void deleteLast(){
-        int index = 0;
-        while(cells[index] != -1){
-            index++;
-        }
-        cells[index-1] = -1;
+//        int index = 0;
+//        while(cells[index] != -1){
+//            index++;
+//        }
+//        cells[index-1] = -1;
+        index--;
+        cells[index] = -1;
 
     }
 
@@ -38,15 +57,16 @@ public class FoundPath {
     }
 
     public int getLength(){
-        int index = 0;
-        while(cells[index]!= -1){
-            index++;
-        }
+//        int index = 0;
+//        while(cells[index]!= -1){
+//            index++;
+//        }
+//        return index;
         return index;
     }
 
     public void resetVals() {
-        this.cells = new int[]{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        Arrays.fill(cells,-1);
     }
 
 

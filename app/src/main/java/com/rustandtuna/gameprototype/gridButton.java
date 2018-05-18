@@ -3,12 +3,11 @@ package com.rustandtuna.gameprototype;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 
 /**
  * Created by Sean on 2/18/2016.
  */
-public class gridButton extends ImageButton{
+public class gridButton extends android.support.v7.widget.AppCompatImageButton{
     int orientation  = 1;
     boolean isOccupied;
     PlayerPiece playerPiece = null;
@@ -52,7 +51,7 @@ public class gridButton extends ImageButton{
 
         String[] out = new String[2];
         this.setPlayerPiece(playerPiece);
-        this.p1p2 = playerPiece.getP1p2();
+        this.p1p2 = playerPiece.getP1P2();
 
         //Check if this is spot is taken already
         if(this.isOccupied){
@@ -133,7 +132,7 @@ public class gridButton extends ImageButton{
     public void updateBackground(int orientation){
         if(this.isOccupied){
             String type = playerPiece.getType();
-            int whichPlayer = playerPiece.getP1p2();
+            int whichPlayer = playerPiece.getP1P2();
             switch (type) {
                 case "ranged":
                     switch (whichPlayer) {

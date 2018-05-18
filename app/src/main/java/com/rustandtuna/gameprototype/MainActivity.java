@@ -15,6 +15,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     public String log_cat = "MainActivity";
 
@@ -31,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
     PlayerPiece p2t1 = new PlayerPiece(2,"close");
     PlayerPiece p2t2 = new PlayerPiece(2,"mounted");
     PlayerPiece p2t3 = new PlayerPiece(2,"ranged");
-
-    //git test line
-    //git test line 2
-
 
     gridButton a1Butt;
     gridButton a2Butt;
@@ -98,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
     TextView p2t1HP;
     TextView p2t2HP;
     TextView p2t3HP;
+    boolean[] visited = new boolean[32];
+
 
 
 
@@ -659,7 +659,6 @@ public class MainActivity extends AppCompatActivity {
                         //Executes if player has not been chosen for movement yet
                     }else{
                         if (gameGrid[this.pressedCell].isOccupied) {
-//                            Toast.makeText(this.getApplicationContext(), "Functionality to move player not built yet.", Toast.LENGTH_SHORT).show();
                             availableTiles = checkMove(whichPlayerTurn,pressedCell);
                             showAvailableMoves(availableTiles,pressedCell);
                             moveToggle = true;
@@ -766,21 +765,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextPlayerTurn(){
         FoundPath foundPath = new FoundPath();
+        resetVisited();
         if(whichPlayerTurn == 1){
             Log.e(log_cat,"Attempting to check path.");
             PathFind(whichPlayerTurn, playersInGame[0].getCoord(), playersInGame[0], foundPath, 0, -1);
             foundPath.resetVals();
+            resetVisited();
             PathFind(whichPlayerTurn, playersInGame[1].getCoord(), playersInGame[1], foundPath, 0, -1);
             foundPath.resetVals();
+            resetVisited();
             PathFind(whichPlayerTurn, playersInGame[2].getCoord(), playersInGame[2], foundPath, 0, -1);
             foundPath.resetVals();
+            resetVisited();
         }else{
             PathFind(whichPlayerTurn,playersInGame[3].getCoord(),playersInGame[3],foundPath,0,-1);
             foundPath.resetVals();
+            resetVisited();
             PathFind(whichPlayerTurn, playersInGame[4].getCoord(), playersInGame[4], foundPath, 0, -1);
             foundPath.resetVals();
+            resetVisited();
             PathFind(whichPlayerTurn, playersInGame[5].getCoord(), playersInGame[5], foundPath, 0, -1);
             foundPath.resetVals();
+            resetVisited();
         }
 
         if (movesUsedThisTurn < 1){
@@ -805,6 +811,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void resetVisited() { Arrays.fill(visited, false); }
+
 
     public int[] checkMove(int playerIdentifier, int location){
         int[] out = {-1,-1,-1,-1};
@@ -915,8 +924,9 @@ public class MainActivity extends AppCompatActivity {
 
         }else{
             Log.e(log_cat,"Current cell: " +Integer.toString(originCell));
+            visited[originCell] = true;
             //Check above
-            if (originCell > 3){
+            if (originCell > 3){  //Top row doesn't need check above
                 Log.e(log_cat,"Checking above " + Integer.toString(originCell));
                 if (gameGrid[originCell-4].isOccupied){
                     Log.e(log_cat,"Found another PlayerPiece.");
@@ -931,15 +941,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if(originCell == originPlayerPiece.getCoord()){
-                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-4)+ " to the path.");
-                        pathFound.next(originCell-4);
-                        PathFind(whichPlayerTurn, (originCell - 4), originPlayerPiece, pathFound,attackPathIndex,originCell);
-                    }else{
-                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-4].getOrientation())&& (originCell-4) != cellFrom){
+                    if (!visited[originCell - 4]){  //Avoid cycles by only visiting each cell once
+                        if(originCell == originPlayerPiece.getCoord()){  //Player pieces can move to any empty adjacent cell on their side of the board.
                             Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-4)+ " to the path.");
                             pathFound.next(originCell-4);
                             PathFind(whichPlayerTurn, (originCell - 4), originPlayerPiece, pathFound,attackPathIndex,originCell);
+                        }else{
+                            if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-4].getOrientation())&& (originCell-4) != cellFrom){
+                                Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-4)+ " to the path.");
+                                pathFound.next(originCell-4);
+                                PathFind(whichPlayerTurn, (originCell - 4), originPlayerPiece, pathFound,attackPathIndex,originCell);
+                            }
                         }
                     }
 
@@ -961,22 +973,24 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (originCell == originPlayerPiece.getCoord()){
-                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+1)+ " to the path.");
-                        pathFound.next(originCell+1);
-                        PathFind(whichPlayerTurn,(originCell+1),originPlayerPiece,pathFound, attackPathIndex,originCell);
-                    } else {
-                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+1].getOrientation())&& (originCell+1) != cellFrom){
+                    if (!visited[originCell + 1]){  //Avoid cycles by only visiting each cell once
+                        if (originCell == originPlayerPiece.getCoord()){
                             Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+1)+ " to the path.");
                             pathFound.next(originCell+1);
                             PathFind(whichPlayerTurn,(originCell+1),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                        } else {
+                            if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+1].getOrientation())&& (originCell+1) != cellFrom){
+                                Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+1)+ " to the path.");
+                                pathFound.next(originCell+1);
+                                PathFind(whichPlayerTurn,(originCell+1),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                            }
                         }
                     }
 
                 }
             }
             //Check below
-            if (originCell < 28){
+            if (originCell < 28){  //Can't check below the last row
                 Log.e(log_cat, "Checking below " + Integer.toString(originCell));
                 if (gameGrid[originCell+4].isOccupied){
                     Log.e(log_cat,"Found another PlayerPiece.");
@@ -991,15 +1005,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (originCell == originPlayerPiece.getCoord()){
-                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+4)+ " to the path.");
-                        pathFound.next(originCell+4);
-                        PathFind(whichPlayerTurn,(originCell+4),originPlayerPiece,pathFound, attackPathIndex,originCell);
-                    } else{
-                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())&& (originCell+4) != cellFrom){
+                    if (!visited[originCell + 4]) {  //Avoid cycles by only visiting each cell once
+                        if (originCell == originPlayerPiece.getCoord()){
                             Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+4)+ " to the path.");
                             pathFound.next(originCell+4);
                             PathFind(whichPlayerTurn,(originCell+4),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                        } else{
+                            if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell+4].getOrientation())&& (originCell+4) != cellFrom){
+                                Log.e(log_cat,"Adding the cell " + Integer.toString(originCell+4)+ " to the path.");
+                                pathFound.next(originCell+4);
+                                PathFind(whichPlayerTurn,(originCell+4),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                            }
                         }
                     }
 
@@ -1020,15 +1036,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    if (originCell == originPlayerPiece.getCoord()){
-                        Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-1)+ " to the path.");
-                        pathFound.next(originCell-1);
-                        PathFind(whichPlayerTurn,(originCell-1),originPlayerPiece,pathFound, attackPathIndex,originCell);
-                    } else {
-                        if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-1].getOrientation())&& (originCell-1) != cellFrom){
+                    if (!visited[originCell - 1]){  //Avoid cycles by only visiting each cell once
+                        if (originCell == originPlayerPiece.getCoord()){
                             Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-1)+ " to the path.");
                             pathFound.next(originCell-1);
                             PathFind(whichPlayerTurn,(originCell-1),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                        } else {
+                            if (CanIMove(gameGrid[originCell].getOrientation(),gameGrid[originCell-1].getOrientation())&& (originCell-1) != cellFrom){
+                                Log.e(log_cat,"Adding the cell " + Integer.toString(originCell-1)+ " to the path.");
+                                pathFound.next(originCell-1);
+                                PathFind(whichPlayerTurn,(originCell-1),originPlayerPiece,pathFound, attackPathIndex,originCell);
+                            }
                         }
                     }
 

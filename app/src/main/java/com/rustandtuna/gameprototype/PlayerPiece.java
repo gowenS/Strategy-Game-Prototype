@@ -16,12 +16,12 @@ public class PlayerPiece {
     public PlayerPiece(int p1p2, String type) {
         this.p1p2 = p1p2;
 
-        if (type == "ranged"|| type =="close" || type=="mounted"){
+        if (type == "ranged"|| type == "close" || type == "mounted"){
             this.type = type;
         }
 
         this.HP = maxHp;
-        //this.coord = coord;
+
     }
 
     public String getType() {
@@ -48,7 +48,7 @@ public class PlayerPiece {
         this.coord = coord;
     }
 
-    public int getP1p2() {
+    public int getP1P2() {
         return p1p2;
     }
 
