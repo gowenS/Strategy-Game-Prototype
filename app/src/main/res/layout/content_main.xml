@@ -79,7 +79,14 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/player2TurnIndicator"
+            android:id="@+id/player2Turn2Indicator"
+            android:rotation="180"
+            android:background="@drawable/player_turn_off"
+            android:layout_gravity="bottom|end" android:contentDescription="TODO"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/player2Turn1Indicator"
             android:rotation="180"
             android:background="@drawable/player_turn_off"
             android:layout_gravity="bottom|end" android:contentDescription="TODO"/>
@@ -350,7 +357,14 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/player1TurnIndicator"
+            android:id="@+id/player1Turn1Indicator"
+            android:background="@drawable/player_turn_off"
+            android:layout_gravity="top|start" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/player1Turn2Indicator"
             android:background="@drawable/player_turn_off"
             android:layout_gravity="top|start" />
 

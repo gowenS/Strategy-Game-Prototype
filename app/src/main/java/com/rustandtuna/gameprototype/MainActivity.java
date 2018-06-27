@@ -81,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
     int pressedCell;
     int whichPlayerTurn = 1;
     int movesUsedThisTurn = 0;
-    ImageView player1TurnIndicator;
-    ImageView player2TurnIndicator;
+    ImageView player1Turn1Indicator;
+    ImageView player2Turn1Indicator;
+    ImageView player1Turn2Indicator;
+    ImageView player2Turn2Indicator;
     boolean moveToggle = false;
     int[] availableTiles = new int[4];
     boolean check = false;
@@ -113,8 +115,10 @@ public class MainActivity extends AppCompatActivity {
 //        for(int i = 0; i< 50; i++){
 //            gameGrid[i] = new gridCell();
 //        }
-        player1TurnIndicator = (ImageView) findViewById(R.id.player1TurnIndicator);
-        player2TurnIndicator = (ImageView) findViewById(R.id.player2TurnIndicator);
+        player1Turn1Indicator = (ImageView) findViewById(R.id.player1Turn1Indicator);
+        player2Turn1Indicator = (ImageView) findViewById(R.id.player2Turn1Indicator);
+        player1Turn2Indicator = (ImageView) findViewById(R.id.player1Turn2Indicator);
+        player2Turn2Indicator = (ImageView) findViewById(R.id.player2Turn2Indicator);
         p1t1HP = (TextView) findViewById(R.id.p1t1HP);
         p1t2HP = (TextView) findViewById(R.id.p1t2HP);
         p1t3HP = (TextView) findViewById(R.id.p1t3HP);
@@ -465,8 +469,10 @@ public class MainActivity extends AppCompatActivity {
             case "init":
 //                Log.e(log_cat,"runGameState initialized");
 //                Toast.makeText(this.getApplicationContext(), "Player one place first piece", Toast.LENGTH_SHORT).show();
-                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
-                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                 p1t1HP.setBackgroundResource(R.drawable.t1empty_turn);
                 this.initStatus = 1;
                 this.status = "";
@@ -482,8 +488,10 @@ public class MainActivity extends AppCompatActivity {
                                 this.initStatus = 2;
                                 this.status = "";
 //                                Toast.makeText(this.getApplicationContext(),"Player two place first piece",Toast.LENGTH_SHORT).show();
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 p1t1HP.setBackgroundResource(R.drawable.swordp1);
                                 p2t1HP.setBackgroundResource(R.drawable.t1empty_turn);
                             }
@@ -499,8 +507,10 @@ public class MainActivity extends AppCompatActivity {
                                 this.initStatus = 3;
                                 this.status = "";
 //                                Toast.makeText(this.getApplicationContext(),"Player one place second piece",Toast.LENGTH_SHORT).show();
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 p2t1HP.setBackgroundResource(R.drawable.swordp1);
                                 p1t2HP.setBackgroundResource(R.drawable.t2empty_turn);
                             }
@@ -516,8 +526,10 @@ public class MainActivity extends AppCompatActivity {
                                 this.initStatus = 4;
                                 this.status = "";
 //                                Toast.makeText(this.getApplicationContext(),"Player two place second piece",Toast.LENGTH_SHORT).show();
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 p1t2HP.setBackgroundResource(R.drawable.bow_arrow_p1);
                                 p2t2HP.setBackgroundResource(R.drawable.t2empty_turn);
                             }
@@ -532,8 +544,10 @@ public class MainActivity extends AppCompatActivity {
                                 this.initStatus = 5;
                                 this.status = "";
 //                                Toast.makeText(this.getApplicationContext(),"Player one place third piece",Toast.LENGTH_SHORT).show();
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 p2t2HP.setBackgroundResource(R.drawable.bow_arrow_p1);
                                 p1t3HP.setBackgroundResource(R.drawable.t3empty_turn);
                             }
@@ -548,8 +562,10 @@ public class MainActivity extends AppCompatActivity {
                                 this.initStatus = 6;
                                 this.status = "";
 //                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 p1t3HP.setBackgroundResource(R.drawable.seigep1);
                                 p2t3HP.setBackgroundResource(R.drawable.t3empty_turn);
 
@@ -567,8 +583,10 @@ public class MainActivity extends AppCompatActivity {
                                 //TODO make this toast say something appropriate
                                 Toast.makeText(this.getApplicationContext(),"Start Game!!",Toast.LENGTH_SHORT).show();
                                 playersInGame = new PlayerPiece[] {p1t1,p1t2,p1t3,p2t1,p2t2,p2t3};
-                                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
-                                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 updateHP();
                                 p2t3HP.setBackgroundResource(R.drawable.seigep1);
                             }
@@ -665,6 +683,8 @@ public class MainActivity extends AppCompatActivity {
                             originCellMoving = pressedCell;
                         } else {
                             Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                            intent.putExtra("PlayerTurn", 1);
+                            intent.putExtra("curOrnt", gameGrid[pressedCell].getOrientation());
                             startActivityForResult(intent, 2);
                         }
                     }
@@ -725,6 +745,8 @@ public class MainActivity extends AppCompatActivity {
                             originCellMoving = pressedCell;
                         } else {
                             Intent intent = new Intent(this.getApplicationContext(), EmptyTilePress.class);
+                            intent.putExtra("PlayerTurn", 2);
+                            intent.putExtra("curOrnt", gameGrid[pressedCell].getOrientation());
                             startActivityForResult(intent, 2);
                         }
                     }
@@ -791,19 +813,28 @@ public class MainActivity extends AppCompatActivity {
 
         if (movesUsedThisTurn < 1){
             movesUsedThisTurn++;
+            player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+            player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+
+
 //            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
         }
         else{
+
 //            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
             if (whichPlayerTurn == 1){
                 whichPlayerTurn = 2;
-                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
-                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
+                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
 
             } else {
                 whichPlayerTurn =1;
-                player1TurnIndicator.setBackgroundResource(R.drawable.player_turn_on);
-                player2TurnIndicator.setBackgroundResource(R.drawable.player_turn_off);
+                player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
+                player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
+                player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
             }
             movesUsedThisTurn = 0;
 //            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
