@@ -601,10 +601,6 @@ public class MainActivity extends AppCompatActivity {
                     //TODO fix popup window below and remove turnOnChoose
                     PlayerTurn(whichPlayerTurn);
 
-
-
-
-
 //                    switch (this.trackPlayerTurn){
 //                        case 1:
 //                            break;
@@ -966,7 +962,6 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
 //                    attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
-                        //TODO add attack function
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell-4].getPlayerPiece());
 
                     }
@@ -998,7 +993,6 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
 //                    attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
-                        //TODO add attack function
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell+1].getPlayerPiece());
 
                     }
@@ -1030,7 +1024,6 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
 //                    attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
-                        //TODO add attack function
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell+4].getPlayerPiece());
 
                     }
@@ -1062,7 +1055,6 @@ public class MainActivity extends AppCompatActivity {
 //                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
 //                    attackPathIndex++;
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
-                        //TODO add attack function
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell-1].getPlayerPiece());
                     }
                 }

@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class FoundPath {
 
-    //TODO rebuild this function so it does not have a set length
+
     int[] cells;
     int index = 0;
     int capacity;

@@ -13,8 +13,6 @@ import android.widget.TextView;
  */
 public class EmptyTilePress extends Activity {
 
-    //TODO make orientation correct for both players (visibility of TextView, Button6[add this])
-    //TODO hide the orientation of the current piece so it is not an option.
 
     TextView TV;
     TextView TVP2;
