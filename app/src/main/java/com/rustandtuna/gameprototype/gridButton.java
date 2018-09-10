@@ -34,10 +34,6 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
         return orientation;
     }
     public void setOrientation(int orientation) {
-//        int orientNow = this.getOrientation();
-//        if(orientNow == orientation){
-//            //TODO build error catcher here
-//        }
 
         if(orientation > 0 && orientation < 5){
             this.orientation = orientation;
@@ -119,15 +115,6 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
         }
     }
 
-//    public void pressMe(){
-//        if(orientation < 4){
-//            orientation++;
-//        }
-//        else{
-//            orientation = 1;
-//        }
-//        this.updateBackground(orientation);
-//    }
 
     public void updateBackground(int orientation){
         if(this.isOccupied){
@@ -143,21 +130,6 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
                             this.setBackgroundResource(R.drawable.backonet3p2);
                             break;
                     }
-                    //switch below is for displaying different orientations for player pieces
-//                    switch (orientation){
-//                        case 1:
-//                            this.setBackgroundResource(R.drawable.backonet3);
-//                            break;
-//                        case 2:
-//                            this.setBackgroundResource(R.drawable.backtwot3);
-//                            break;
-//                        case 3:
-//                            this.setBackgroundResource(R.drawable.backthreet3);
-//                            break;
-//                        case 4:
-//                            this.setBackgroundResource(R.drawable.backfourt3);
-//                            break;
-//                    }
                     break;
                 case "mounted":
                     switch (whichPlayer) {
@@ -168,21 +140,6 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
                             this.setBackgroundResource(R.drawable.backonet2p2);
                             break;
                     }
-
-//                    switch (orientation){
-//                        case 1:
-//                            this.setBackgroundResource(R.drawable.backonet2);
-//                            break;
-//                        case 2:
-//                            this.setBackgroundResource(R.drawable.backtwot2);
-//                            break;
-//                        case 3:
-//                            this.setBackgroundResource(R.drawable.backthreet2);
-//                            break;
-//                        case 4:
-//                            this.setBackgroundResource(R.drawable.backfourt2);
-//                            break;
-//                    }
                     break;
                 case "close":
                     switch (whichPlayer) {
@@ -193,20 +150,6 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
                             this.setBackgroundResource(R.drawable.backonet1p2);
                             break;
                     }
-//                    switch (orientation){
-//                        case 1:
-//                            this.setBackgroundResource(R.drawable.backonet1);
-//                            break;
-//                        case 2:
-//                            this.setBackgroundResource(R.drawable.backtwot1);
-//                            break;
-//                        case 3:
-//                            this.setBackgroundResource(R.drawable.backthreet1);
-//                            break;
-//                        case 4:
-//                            this.setBackgroundResource(R.drawable.backfourt1);
-//                            break;
-//                    }
                     break;
             }
 
@@ -242,6 +185,5 @@ public class gridButton extends android.support.v7.widget.AppCompatImageButton{
     public void setPlayerPiece(PlayerPiece playerPiece) {
         this.playerPiece = playerPiece;
     }
-
 
 }

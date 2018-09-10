@@ -17,12 +17,7 @@ public class gridCell{
         return orientation;
     }
 
-    public void setOrientation(int orientation) {
-//        if(orientation > 0 && orientation < 5){
-//            this.orientation = orientation;
-//        }
 
-    }
     public void pressMe(){
         if(orientation < 4){
             orientation++;

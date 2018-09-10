@@ -3,6 +3,8 @@ package com.rustandtuna.gameprototype;
 /**
  * Created by Sean on 2/8/2016.
  */
+
+
 public class PlayerPiece {
     private String type;
     private int HP;
@@ -28,16 +30,8 @@ public class PlayerPiece {
         return type;
     }
 
-    public void setType(String type) {
-//        this.type = type;
-    }
-
     public int getHP() {
         return HP;
-    }
-
-    public void setHP(int HP) {
-//        this.HP = HP;
     }
 
     public int getCoord() {

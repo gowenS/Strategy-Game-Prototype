@@ -26,7 +26,6 @@ public class EmptyTilePress extends Activity {
     int plrTrn;
     int curOrnt;
 
-//    public static int ButtonPressed = 0;
     public String log_cat = "EmptyTilePress";
     Intent intent;
 
@@ -73,7 +72,6 @@ public class EmptyTilePress extends Activity {
                 public void onClick(View v) {
 
                     orientation = 1;
-//                Log.e(log_cat, "ButtonPressed = 1");
                     intent.putExtra("Orientation",orientation);
                     setResult(0, intent);
                     finish();
@@ -85,7 +83,6 @@ public class EmptyTilePress extends Activity {
                 @Override
                 public void onClick(View v) {
                     orientation = 2;
-//                Log.e(log_cat, "ButtonPressed = 2");
                     intent.putExtra("Orientation", orientation);
                     setResult(0, intent);
                     finish();
@@ -97,7 +94,6 @@ public class EmptyTilePress extends Activity {
                 @Override
                 public void onClick(View v) {
                     orientation = 3;
-//                Log.e(log_cat, "ButtonPressed = 3");
                     intent.putExtra("Orientation", orientation);
                     setResult(0,intent);
                     finish();
@@ -110,7 +106,6 @@ public class EmptyTilePress extends Activity {
                 public void onClick(View v) {
 
                     orientation= 4;
-//                Log.e(log_cat, "ButtonPressed = 4");
                     intent.putExtra("Orientation",orientation);
                     setResult(0,intent);
                     finish();
@@ -123,7 +118,6 @@ public class EmptyTilePress extends Activity {
             public void onClick(View v) {
 
                 orientation = 5;
-//                Log.e(log_cat, "ButtonPressed = Cancel");
                 intent.putExtra("Orientation", orientation);
                 setResult(0, intent);
                 finish();
@@ -133,32 +127,11 @@ public class EmptyTilePress extends Activity {
             @Override
             public void onClick(View v) {
                 orientation = 5;
-//                Log.e(log_cat, "ButtonPressed = Cancel");
                 intent.putExtra("Orientation", orientation);
                 setResult(0, intent);
                 finish();
             }
         });
     }
-
-//    protected void rotateTile(int i){
-//        switch (i){
-//            case 1:
-//                this.orientation = 1;
-//                break;
-//            case 2:
-//                this.orientation = 2;
-//                break;
-//            case 3:
-//                this.orientation = 3;
-//                break;
-//            case 4:
-//                this.orientation = 4;
-//                break;
-//        }
-//        EmptyTilePress.ButtonPressed = this.orientation;
-//        finish();
-//
-//    }
 
 }

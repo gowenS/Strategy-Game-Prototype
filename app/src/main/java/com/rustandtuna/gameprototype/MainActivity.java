@@ -101,20 +101,12 @@ public class MainActivity extends AppCompatActivity {
     boolean[] visited = new boolean[32];
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //gameGrid sorts the items from left to right so that row one is {1,2,3,4,5...}
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        for(int i = 0; i< 50; i++){
-//            gameGrid[i] = new gridCell();
-//        }
         player1Turn1Indicator = (ImageView) findViewById(R.id.player1Turn1Indicator);
         player2Turn1Indicator = (ImageView) findViewById(R.id.player2Turn1Indicator);
         player1Turn2Indicator = (ImageView) findViewById(R.id.player1Turn2Indicator);
@@ -125,10 +117,6 @@ public class MainActivity extends AppCompatActivity {
         p2t1HP = (TextView) findViewById(R.id.p2t1HP);
         p2t2HP = (TextView) findViewById(R.id.p2t2HP);
         p2t3HP = (TextView) findViewById(R.id.p2t3HP);
-
-
-
-
 
         a1Butt = (gridButton) findViewById(R.id.a1Button);
         gameGrid[0] = a1Butt;
@@ -419,14 +407,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-//        PlayerTurn();
-
-
         Context gameContext = getApplicationContext();
         initializeGame();
-
     }
 
     @Override
@@ -452,23 +434,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initializeGame(){
-
         status = "init";
         this.runGameState(-1);
-
     }
-    public String runGameState(int pressedCell){
-//        Log.e(log_cat,"Entered runGameState method");
-        allAttackPaths = new FoundPath[6];
 
+    public String runGameState(int pressedCell){
+        allAttackPaths = new FoundPath[6];
 
         for (int l = 0; l<6 ; l++){
             allAttackPaths[l] = new FoundPath();
         }
+
         switch (this.status){
             case "init":
-//                Log.e(log_cat,"runGameState initialized");
-//                Toast.makeText(this.getApplicationContext(), "Player one place first piece", Toast.LENGTH_SHORT).show();
                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
@@ -478,16 +456,14 @@ public class MainActivity extends AppCompatActivity {
                 this.status = "";
                 break;
             case "btn_prs":
-                //Log.e(log_cat, "Entered btn_prs switch case");
+
                 if (initStatus < 7){
                     switch (this.initStatus){
                         case 1:
-                            //Log.e(log_cat,"button pressed");
                             legalMove = gameGrid[pressedCell].inhabitCell(p1t1,pressedCell);
                             if(legalMove[0] == ""){
                                 this.initStatus = 2;
                                 this.status = "";
-//                                Toast.makeText(this.getApplicationContext(),"Player two place first piece",Toast.LENGTH_SHORT).show();
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
@@ -506,7 +482,6 @@ public class MainActivity extends AppCompatActivity {
                             if(legalMove[0] == ""){
                                 this.initStatus = 3;
                                 this.status = "";
-//                                Toast.makeText(this.getApplicationContext(),"Player one place second piece",Toast.LENGTH_SHORT).show();
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
@@ -525,7 +500,6 @@ public class MainActivity extends AppCompatActivity {
                             if(legalMove[0] == ""){
                                 this.initStatus = 4;
                                 this.status = "";
-//                                Toast.makeText(this.getApplicationContext(),"Player two place second piece",Toast.LENGTH_SHORT).show();
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
@@ -543,7 +517,6 @@ public class MainActivity extends AppCompatActivity {
                             if(legalMove[0] == ""){
                                 this.initStatus = 5;
                                 this.status = "";
-//                                Toast.makeText(this.getApplicationContext(),"Player one place third piece",Toast.LENGTH_SHORT).show();
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
@@ -561,7 +534,6 @@ public class MainActivity extends AppCompatActivity {
                             if(legalMove[0] == ""){
                                 this.initStatus = 6;
                                 this.status = "";
-//                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
                                 player2Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
@@ -580,8 +552,7 @@ public class MainActivity extends AppCompatActivity {
                             if(legalMove[0] == ""){
                                 this.initStatus = 7;
                                 this.status = "";
-                                //TODO make this toast say something appropriate
-                                Toast.makeText(this.getApplicationContext(),"Start Game!!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this.getApplicationContext(),"Start Game",Toast.LENGTH_SHORT).show();
                                 playersInGame = new PlayerPiece[] {p1t1,p1t2,p1t3,p2t1,p2t2,p2t3};
                                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_on);
                                 player1Turn2Indicator.setBackgroundResource(R.drawable.player_turn_on);
@@ -598,27 +569,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    //TODO fix popup window below and remove turnOnChoose
                     PlayerTurn(whichPlayerTurn);
 
-//                    switch (this.trackPlayerTurn){
-//                        case 1:
-//                            break;
-//                        case 2:
-//                            break;
-//                    }
                 }
                 break;
         }
 
         //Player 1 place piece one
         return null;
-
-
     }
+
     public void buttonPress(int pressedCell){
         status = "btn_prs";
-//        Log.e(log_cat,"status = "+ status + " ; initStatus = " + initStatus+ " ; pressedCell = " + pressedCell);
         this.pressedCell = pressedCell;
         runGameState(pressedCell);
     }
@@ -651,7 +613,6 @@ public class MainActivity extends AppCompatActivity {
                                     moveToggle = false;
                                     nextPlayerTurn();
 
-//                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
                                 } else{
                                     Toast.makeText(this.getApplicationContext(),legalMove[1],Toast.LENGTH_SHORT).show();
                                 }
@@ -692,8 +653,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             //Player 2 turn
-
-
             case 2:
                 if (pressedCell < (32/2)) {
 
@@ -716,7 +675,6 @@ public class MainActivity extends AppCompatActivity {
                                     moveToggle = false;
                                     nextPlayerTurn();
 
-//                                Toast.makeText(this.getApplicationContext(),"Player two place third piece",Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(this.getApplicationContext(), legalMove[1], Toast.LENGTH_SHORT).show();
                                 }
@@ -765,7 +723,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 2){
             if (data != null){
                 int orientation = data.getIntExtra("Orientation",0);
-//                Log.e(log_cat,"onActivityResult called.");
                 if((orientation != 5)&&(orientation != gameGrid[pressedCell].getOrientation())){
                     gameGrid[this.pressedCell].setOrientation(orientation);
                     nextPlayerTurn();
@@ -776,8 +733,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-
-//
 
     }
 
@@ -813,11 +768,9 @@ public class MainActivity extends AppCompatActivity {
             player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
 
 
-//            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
         }
         else{
 
-//            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
             if (whichPlayerTurn == 1){
                 whichPlayerTurn = 2;
                 player1Turn1Indicator.setBackgroundResource(R.drawable.player_turn_off);
@@ -833,7 +786,6 @@ public class MainActivity extends AppCompatActivity {
                 player2Turn2Indicator.setBackgroundResource(R.drawable.player_turn_off);
             }
             movesUsedThisTurn = 0;
-//            Log.e(log_cat,"Moves used this turn = " +movesUsedThisTurn);
 
         }
 
@@ -959,9 +911,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(log_cat,"Found another PlayerPiece.");
                     foundPlayer = gameGrid[originCell-4].getPlayerPiece();
                     if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
-//                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
-//                    attackPathIndex++;
-                        Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
+
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell-4].getPlayerPiece());
 
                     }
@@ -990,8 +940,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(log_cat,"Found another PlayerPiece.");
                     foundPlayer = gameGrid[originCell+1].getPlayerPiece();
                     if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
-//                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
-//                    attackPathIndex++;
+
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell+1].getPlayerPiece());
 
@@ -1021,8 +970,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e(log_cat,"Found another PlayerPiece.");
                     foundPlayer = gameGrid[originCell+4].getPlayerPiece();
                     if (foundPlayer.p1p2 != originPlayerPiece.p1p2){
-//                    attackPaths[attackPathIndex].setCells(pathFound.getCells());
-//                    attackPathIndex++;
+
                         Toast.makeText(this.getApplicationContext(), "Attack Possible now!", Toast.LENGTH_SHORT).show();
                         attackNow(pathFound,originPlayerPiece,gameGrid[originCell+4].getPlayerPiece());
 
@@ -1094,14 +1042,6 @@ public class MainActivity extends AppCompatActivity {
         switch (attacker.getType()) {
             //TODO add specific attack damages per PlayerPiece type
             case "close":
-//                switch (beingAttacked.getType()){
-//                    case "close":
-//                        break;
-//                    case "mounted":
-//                        break;
-//                    case "ranged":
-//                        break;
-//                }
                 attackDamage = (int) ((1/distance)*defaultDamage);
                 beingAttacked.inflictDamage(attackDamage);
                 break;
@@ -1138,7 +1078,6 @@ public class MainActivity extends AppCompatActivity {
             },delay);
 
             //TODO make this happen sequentially
-//            wait(1000);
         }
     }
 
@@ -1201,7 +1140,4 @@ public class MainActivity extends AppCompatActivity {
         p2t3HP.setText(Integer.toString(p2t3.getHP()));
 
     }
-
-
-//
 }

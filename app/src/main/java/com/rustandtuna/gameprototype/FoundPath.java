@@ -18,11 +18,7 @@ public class FoundPath {
     }
 
     public void next(int inputCell){
-//        int index = 0;
-//        while(cells[index] != -1){
-//            index++;
-//        }
-//        cells[index] = inputCell;
+
         if (index == cells.length) {
             int[] temp = new int[capacity*2];
             Arrays.fill(temp,-1);
@@ -37,11 +33,7 @@ public class FoundPath {
     }
 
     public void deleteLast(){
-//        int index = 0;
-//        while(cells[index] != -1){
-//            index++;
-//        }
-//        cells[index-1] = -1;
+
         index--;
         cells[index] = -1;
 
@@ -57,11 +49,7 @@ public class FoundPath {
     }
 
     public int getLength(){
-//        int index = 0;
-//        while(cells[index]!= -1){
-//            index++;
-//        }
-//        return index;
+
         return index;
     }
 
@@ -69,6 +57,4 @@ public class FoundPath {
         Arrays.fill(cells,-1);
     }
 
-
-    //    public
 }
